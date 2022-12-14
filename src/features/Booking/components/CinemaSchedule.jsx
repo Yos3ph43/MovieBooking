@@ -14,7 +14,7 @@ const CinemaSchedule = () => {
   const cinemaSchedule = useSelector((state) => state.booking.cinemaSchedule);
   console.log(cinemaSchedule);
   return (
-    <div className="container mx-auto mt-28 ">
+    <div className="container mx-auto mt-28 pb-10">
       <h2 className="text-4xl font-medium text-slate-100">
         Lịch Chiếu Theo Rạp
       </h2>
@@ -34,7 +34,7 @@ const CinemaSchedule = () => {
             ),
             children: cinemaSchedule.length > 0 && (
               <Tabs
-                className="text-slate-100"
+                className="text-slate-100 overflow-y-auto h-100"
                 tabPosition="left"
                 items={cinemaSchedule[0].lstCumRap.map((itemCinema) => {
                   return {
@@ -46,7 +46,7 @@ const CinemaSchedule = () => {
                       </div>
                     ),
                     children: itemCinema.danhSachPhim.map((itemMovies) => (
-                      <div className="flex items-center">
+                      <div className="flex items-center ">
                         <div className="info mr-4 w-1/6">
                           <h1 className="font-normal text-base">
                             {itemMovies.tenPhim}

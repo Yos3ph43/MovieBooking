@@ -2,6 +2,7 @@ import { Col, Card, Button } from "antd";
 import moment from "moment/moment";
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "./MovieList.css";
 
@@ -71,9 +72,11 @@ const MovieList = () => {
               </p>
               <p className="text-slate-400 m-1">Đánh giá: {item.danhGia}/10</p>
               <div className="mt-5 text-right">
-                <Button size="" className="bg-indigo-900 text-slate-200">
-                  Đặt vé
-                </Button>
+                <Link to={`/detail/${item.maPhim}`}>
+                  <Button size="" className="bg-indigo-900 text-slate-200">
+                    Đặt vé
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

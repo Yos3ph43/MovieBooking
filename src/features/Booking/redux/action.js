@@ -49,3 +49,18 @@ export const fetchCinemaSchedule = (cinemaId) => async (next) => {
     console.log(error);
   }
 };
+
+export const fetchMovieDetail = (movieId) => async (next) => {
+  try {
+    const res = await requestor({
+      method: "GET",
+      url: apiPath.MOVIE_DETAIL,
+      params: {
+        MaPhim: movieId,
+      },
+    });
+    next({ type: actions.SET_MOVIE_DETAIL, payload: res.data.content });
+  } catch (error) {
+    console.log(error);
+  }
+};
