@@ -5,6 +5,9 @@ const requestor = axios.create({
   headers: {
     TokenCybersoft: process.env.REACT_APP_CYBERSOFT_TOKEN,
   },
+  params: {
+    maNhom: "GP10",
+  },
 });
 
 requestor.interceptors.request.use((req) => {

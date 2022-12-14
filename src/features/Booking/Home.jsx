@@ -4,15 +4,21 @@ import { useDispatch } from "react-redux";
 import CinemaSchedule from "./components/CinemaSchedule";
 import HomeCarousel from "./components/HomeCarousel";
 import MovieList from "./components/MovieList";
-import { fetchBannersAction } from "./redux/action";
+import {
+  fetchBannersAction,
+  fetchCinemasAction,
+  fetchMoviesAction,
+} from "./redux/action";
 
 const Home = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchBannersAction);
+    dispatch(fetchMoviesAction);
+    dispatch(fetchCinemasAction);
   }, []);
   return (
-    <div>
+    <div className="bg-gray-900">
       <HomeCarousel />
       <MovieList />
       <CinemaSchedule />
