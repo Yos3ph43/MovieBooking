@@ -1,11 +1,20 @@
 import { Button, Checkbox, Form, Input } from "antd";
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { loginAction } from "./redux/action";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const handleLogin = (value) => {
+  const navigate = useNavigate();
+  const handleLogin = async (value) => {
     console.log(value);
+    try {
+      await dispatch(loginAction(value));
+      navigate("/");
+    } catch (error) {
+      window.alert(error.response.data.content);
+    }
   };
   return (
     <div className="container ">
