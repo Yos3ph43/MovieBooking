@@ -14,6 +14,7 @@ const HomeCarousel = () => {
         slidesToShow={1}
         slidesToScroll={1}
         autoplay={true}
+        arrows={false}
       >
         {banners.map((item) => (
           <div className="h-100" key={item.maBanner}>
