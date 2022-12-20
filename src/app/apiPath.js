@@ -6,4 +6,5 @@ export const apiPath = {
   MOVIE_DETAIL: "/api/QuanLyRap/LayThongTinLichChieuPhim",
   LOGIN: "/api/QuanLyNguoiDung/DangNhap",
   SIGNUP: "/api/QuanLyNguoiDung/DangKy",
+  BOOKING: "/api/QuanLyDatVe/LayDanhSachPhongVe",
 };

@@ -3,6 +3,7 @@ import moment from "moment";
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { fetchCinemaSchedule } from "../redux/action";
 
 const CinemaSchedule = () => {
@@ -12,7 +13,6 @@ const CinemaSchedule = () => {
     dispatch(fetchCinemaSchedule(cinemas[0]?.maHeThongRap));
   }, [cinemas]);
   const cinemaSchedule = useSelector((state) => state.booking.cinemaSchedule);
-  console.log(cinemaSchedule);
   return (
     <div className="container mx-auto mt-28 pb-10">
       <h2 className="text-4xl font-medium text-slate-100">
@@ -46,7 +46,10 @@ const CinemaSchedule = () => {
                       </div>
                     ),
                     children: itemCinema.danhSachPhim.map((itemMovies) => (
-                      <div className="flex items-center ">
+                      <div
+                        className="flex items-center "
+                        key={itemMovies.maPhim}
+                      >
                         <div className="info mr-4 w-1/6">
                           <h1 className="font-normal text-base">
                             {itemMovies.tenPhim}
@@ -60,11 +63,16 @@ const CinemaSchedule = () => {
                         <div className="schedule w-5/6 ">
                           {itemMovies.lstLichChieuTheoPhim.map(
                             (itemMovieSchedule) => (
-                              <Button className="bg-indigo-900 text-slate-200 m-1">
-                                {moment(
-                                  itemMovieSchedule.ngayChieuGioChieu
-                                ).format("DD/MM/YYYY ~ h:mm a")}
-                              </Button>
+                              <Link
+                                to={`/booking/${itemMovieSchedule.maLichChieu}`}
+                                key={itemMovieSchedule.maLichChieu}
+                              >
+                                <Button className="bg-indigo-900 text-slate-200 m-1">
+                                  {moment(
+                                    itemMovieSchedule.ngayChieuGioChieu
+                                  ).format("DD/MM/YYYY ~ h:mm a")}
+                                </Button>
+                              </Link>
                             )
                           )}
                         </div>

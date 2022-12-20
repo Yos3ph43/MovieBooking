@@ -1,9 +1,10 @@
-import { Button, Rate, Tabs } from "antd";
+import { Button, Modal, Rate, Tabs } from "antd";
 import moment from "moment";
-import React from "react";
+import React, { useState } from "react";
+import { useRef } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { fetchMovieDetail } from "./redux/action";
 
 const Detail = () => {
@@ -14,7 +15,26 @@ const Detail = () => {
     dispatch(fetchMovieDetail(movieId));
   }, [params]);
   const movie = useSelector((state) => state.booking.movieDetail);
-  console.log(movie);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const videoTrailer = useRef();
+  const handleCancel = () => {
+    setIsModalOpen(false);
+    let iframe = videoTrailer.current;
+    if (iframe !== null) {
+      let iframeSrc = iframe.src;
+      iframe.src = iframeSrc;
+    }
+  };
+
+  let trailer = "";
+  trailer =
+    movie &&
+    movie.trailer.includes("watch?v=") &&
+    movie.trailer.replace("watch?v=", "embed/");
+
   return (
     movie && (
       <div className="bg-gray-900 pt-20 h-100">
@@ -32,7 +52,12 @@ const Detail = () => {
               <p>Đánh giá: {movie.danhGia}/10</p>
 
               <p>
-                <Button>Trailer</Button>
+                <Button
+                  className="bg-indigo-900 text-slate-200 m-1"
+                  onClick={showModal}
+                >
+                  Trailer
+                </Button>
               </p>
               <h4>Lịch Chiếu:</h4>
               <Tabs
@@ -48,14 +73,21 @@ const Detail = () => {
                     children: (
                       <div>
                         {item.cumRapChieu.map((itemCinema) => (
-                          <div className="text-slate-200">
+                          <div
+                            className="text-slate-200"
+                            key={itemCinema.maCumRap}
+                          >
                             <p>{itemCinema.tenCumRap}</p>
                             <div>
                               {itemCinema.lichChieuPhim.map((itemSchedule) => (
                                 <div key={itemSchedule.maLichChieu}>
-                                  <Button>
-                                    {itemSchedule.ngayChieuGioChieu}
-                                  </Button>
+                                  <Link
+                                    to={`/booking/${itemSchedule.maLichChieu}`}
+                                  >
+                                    <Button className="bg-indigo-900 text-slate-200 m-1">
+                                      {itemSchedule.ngayChieuGioChieu}
+                                    </Button>
+                                  </Link>
                                 </div>
                               ))}
                             </div>
@@ -69,6 +101,31 @@ const Detail = () => {
             </div>
           </div>
         </div>
+        <Modal
+          open={isModalOpen}
+          onCancel={handleCancel}
+          width="70%"
+          className="bg-black"
+          footer={[
+            <Button
+              key="back"
+              onClick={handleCancel}
+              className="bg-indigo-900 text-slate-200 m-1"
+            >
+              Close
+            </Button>,
+          ]}
+        >
+          <iframe
+            ref={videoTrailer}
+            width="100%"
+            height="580"
+            src={trailer}
+            title={movie.tenPhim}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </Modal>
       </div>
     )
   );

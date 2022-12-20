@@ -64,3 +64,19 @@ export const fetchMovieDetail = (movieId) => async (next) => {
     console.log(error);
   }
 };
+
+export const fetchBooking = (movieId) => async (next) => {
+  try {
+    const res = await requestor({
+      method: "GET",
+      url: apiPath.BOOKING,
+      params: {
+        MaLichChieu: movieId,
+      },
+    });
+    console.log(res.data.content);
+    next({ type: actions.SET_BOOKING, payload: res.data.content });
+  } catch (error) {
+    console.log(error);
+  }
+};
