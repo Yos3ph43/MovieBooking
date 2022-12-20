@@ -20,3 +20,21 @@ export const loginAction = (userLogin) => {
     }
   };
 };
+
+export const signUpAction = (userInput) => {
+  return async (next) => {
+    try {
+      const res = await requestor({
+        method: "POST",
+        url: apiPath.SIGNUP,
+        data: userInput,
+      });
+      next({
+        type: actions.SET_SIGNUP,
+        payload: res.data.content,
+      });
+    } catch (error) {
+      throw error;
+    }
+  };
+};

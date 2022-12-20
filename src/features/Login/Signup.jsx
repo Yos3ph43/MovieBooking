@@ -1,8 +1,10 @@
 import { Button, Input, Form } from "antd";
 import React from "react";
+import { useDispatch } from "react-redux";
 
 const Signup = () => {
-  const handleAddMember = (value) => {
+  const dispatch = useDispatch();
+  const handleAddNew = (value) => {
     console.log(value);
   };
   return (
@@ -19,7 +21,7 @@ const Signup = () => {
           initialValues={{
             remember: true,
           }}
-          onFinish={handleAddMember}
+          onFinish={handleAddNew}
           autoComplete="off"
         >
           <Form.Item
