@@ -83,7 +83,7 @@ const SetSchedule = (props) => {
               rules={[
                 {
                   required: true,
-                  message: "Xin chọn hệ thống rạp",
+                  message: "Xin chọn cụm rạp",
                 },
               ]}
             >
@@ -110,7 +110,7 @@ const SetSchedule = (props) => {
               rules={[
                 {
                   required: true,
-                  message: "Xin chọn hệ thống rạp",
+                  message: "Xin chọn ngày chiếu",
                 },
               ]}
             >
@@ -122,7 +122,7 @@ const SetSchedule = (props) => {
               rules={[
                 {
                   required: true,
-                  message: "Xin chọn hệ thống rạp",
+                  message: "Xin nhập giá vé",
                 },
               ]}
             >
