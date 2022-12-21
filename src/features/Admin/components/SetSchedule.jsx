@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  Button,
-  DatePicker,
-  Form,
-  Input,
-  InputNumber,
-  Radio,
-  Select,
-} from "antd";
+import { Button, DatePicker, Form, InputNumber, Select } from "antd";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDetail } from "../redux/action";

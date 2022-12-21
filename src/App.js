@@ -1,6 +1,5 @@
 import Header from "components/Header";
 import Admin from "features/Admin/Admin";
-import DropMenu from "features/Admin/components/DropMenu";
 import Booking from "features/Booking/Booking";
 import MovieDetail from "features/Booking/Detail";
 import Home from "features/Booking/Home";

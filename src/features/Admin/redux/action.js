@@ -33,3 +33,18 @@ export const fetchCinemas = async (next) => {
     console.log(error);
   }
 };
+
+export const deleteSeletedMovie = (id) => async (next) => {
+  try {
+    const res = await requestor({
+      method: "DELETE",
+      url: apiPath.DELETE_MOVIE,
+      params: {
+        MaPhim: id,
+      },
+    });
+    console.log(res.data.content);
+  } catch (error) {
+    console.log(error);
+  }
+};

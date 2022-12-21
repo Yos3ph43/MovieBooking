@@ -1,17 +1,17 @@
 import { Button, Modal } from "antd";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Space, Table, Tag } from "antd";
+import { Space, Table } from "antd";
 import { DeleteFilled, ScheduleFilled, EditFilled } from "@ant-design/icons";
 import SetSchedule from "./SetSchedule";
 import MovieEdit from "./MovieEdit";
-import { fetchDetail } from "../redux/action";
-import { useEffect } from "react";
+import { deleteSeletedMovie, fetchMovies } from "../redux/action";
 
 const MovieManage = () => {
   const dispatch = useDispatch();
   const movies = useSelector((state) => state.admin.movies);
-  let [movieId, setMovieId] = useState("");
+
+  const [movieId, setMovieId] = useState("");
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
@@ -87,7 +87,12 @@ const MovieManage = () => {
               <ScheduleFilled />
             </Button>
             <Button className="bg-red-800 text-white border-white hover:border-red-600 hover:text-red-600 hover:bg-neutral-800">
-              <DeleteFilled />
+              <DeleteFilled
+                onClick={() => {
+                  dispatch(deleteSeletedMovie(item.maPhim));
+                  dispatch(fetchMovies);
+                }}
+              />
             </Button>
           </Space>
         </div>
@@ -95,10 +100,18 @@ const MovieManage = () => {
     };
   });
 
+  //main render
   return (
     <div>
       <div className="my-5">
-        <Button>Add Movie</Button>
+        <Button
+          onClick={() => {
+            showModal();
+            setMovieId(null);
+          }}
+        >
+          Add Movie
+        </Button>
       </div>
       <Table columns={columns} dataSource={data} />
       <Modal
@@ -111,8 +124,9 @@ const MovieManage = () => {
           </Button>,
         ]}
       >
-        <MovieEdit />
+        <MovieEdit movieId={movieId} />
       </Modal>
+
       <Modal
         open={isModalOpen1}
         onCancel={handleCancel}

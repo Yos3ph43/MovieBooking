@@ -1,4 +1,4 @@
-const sliceName = "booking";
+const sliceName = "admin";
 const actions = {
   SET_MOVIES: `${sliceName}/SET_MOVIES`,
   SET_MOVIE_DETAIL: `${sliceName}/SET_MOVIE_DETAIL`,

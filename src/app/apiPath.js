@@ -8,4 +8,5 @@ export const apiPath = {
   SIGNUP: "/api/QuanLyNguoiDung/DangKy",
   BOOKING: "/api/QuanLyDatVe/LayDanhSachPhongVe",
   CINEMA_CLUSTER: "/api/QuanLyRap/LayThongTinCumRapTheoHeThong",
+  DELETE_MOVIE: "/api/QuanLyPhim/XoaPhim",
 };
