@@ -16,6 +16,7 @@ const Login = () => {
       window.alert(error.response.data.content);
     }
   };
+
   return (
     <div className="container ">
       <div className="flex justify-center mt-10">
@@ -82,6 +83,10 @@ const Login = () => {
             </Button>
           </Form.Item>
         </Form>
+        <div>
+          <p>duc3636</p>
+          <p>nguyen1</p>
+        </div>
       </div>
     </div>
   );

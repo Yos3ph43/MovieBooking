@@ -1,11 +1,20 @@
 import { Button, Input, Form } from "antd";
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { signUpAction } from "./redux/action";
 
 const Signup = () => {
   const dispatch = useDispatch();
-  const handleAddNew = (value) => {
+  const navigate = useNavigate();
+  const handleAddNew = async (value) => {
     console.log(value);
+    try {
+      await dispatch(signUpAction(value));
+      navigate("/login");
+    } catch (error) {
+      window.alert(error.response.data.content);
+    }
   };
   return (
     <div className="container ">
@@ -56,6 +65,11 @@ const Signup = () => {
               {
                 required: true,
                 message: "Please input your email!",
+              },
+              {
+                pattern:
+                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                message: "Email not valid",
               },
             ]}
           >

@@ -7,6 +7,7 @@ import { fetchBooking } from "./redux/action";
 const Booking = () => {
   const dispatch = useDispatch();
   const params = useParams();
+  console.log(params);
   useEffect(() => {
     dispatch(fetchBooking(params.id));
   }, [params]);
@@ -14,7 +15,12 @@ const Booking = () => {
   return (
     booking && (
       <div className="container mx-auto">
-        <h1>{booking.thongTinPhim.tenPhim}</h1>
+        <div className="">
+          <h1>{booking.thongTinPhim.tenPhim}</h1>
+        </div>
+        <div>
+          <button>{booking.danhSachGhe.map(() => {})}</button>
+        </div>
       </div>
     )
   );

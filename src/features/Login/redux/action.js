@@ -38,3 +38,13 @@ export const signUpAction = (userInput) => {
     }
   };
 };
+
+export const logoutAction = () => {
+  return async (next) => {
+    next({
+      type: actions.SET_PROFILE,
+      payload: null,
+    });
+    localStorage.setItem("token", null);
+  };
+};

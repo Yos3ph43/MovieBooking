@@ -1,12 +1,21 @@
 import { Button } from "antd";
+import { logoutAction } from "features/Login/redux/action";
 import React from "react";
-import { useSelector } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const profile = useSelector((state) => state.user.profile);
-  //conti
-  const handleLogout = () => {};
+  let profile = useSelector((state) => state.user.profile);
+  console.log(profile);
+  const dispatch = useDispatch();
+  const handleLogout = async () => {
+    profile = null;
+    try {
+      await dispatch(logoutAction());
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <header className="bg-gray-800 py-5 ">
       <div className="container mx-auto flex justify-between items-center">
@@ -26,7 +35,12 @@ const Header = () => {
             <span className="text-indigo-300 font-bold ml-1">
               {profile?.hoTen}
             </span>{" "}
-            <Button className="ml-10" danger type="primary">
+            <Button
+              onClick={handleLogout}
+              className="ml-10"
+              danger
+              type="primary"
+            >
               LOGOUT
             </Button>
           </span>
