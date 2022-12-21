@@ -105,7 +105,6 @@ const Detail = () => {
           open={isModalOpen}
           onCancel={handleCancel}
           width="70%"
-          className="bg-black"
           footer={[
             <Button
               key="back"

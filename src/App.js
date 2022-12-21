@@ -1,4 +1,6 @@
 import Header from "components/Header";
+import Admin from "features/Admin/Admin";
+import DropMenu from "features/Admin/components/DropMenu";
 import Booking from "features/Booking/Booking";
 import MovieDetail from "features/Booking/Detail";
 import Home from "features/Booking/Home";
@@ -16,6 +18,7 @@ function App() {
         <Route path="/booking/:id" element={<Booking />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   );

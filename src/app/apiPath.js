@@ -7,4 +7,5 @@ export const apiPath = {
   LOGIN: "/api/QuanLyNguoiDung/DangNhap",
   SIGNUP: "/api/QuanLyNguoiDung/DangKy",
   BOOKING: "/api/QuanLyDatVe/LayDanhSachPhongVe",
+  CINEMA_CLUSTER: "/api/QuanLyRap/LayThongTinCumRapTheoHeThong",
 };
