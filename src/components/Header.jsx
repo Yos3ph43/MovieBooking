@@ -16,6 +16,9 @@ const Header = () => {
         >
           Cyborg Movie
         </Link>
+        <Link to="/admin" className="text-red-600 font-semibold text-4xl">
+          👉ADMIN👌👌👌💯💯👇
+        </Link>
         {profile ? (
           <span className="text-indigo-100 text-xl">
             {" "}
