@@ -25,7 +25,10 @@ const Header = () => {
         >
           Cyborg Movie
         </Link>
-        <Link to="/admin" className="text-red-600 font-semibold text-4xl">
+        <Link
+          to="/admin/userManage"
+          className="text-red-600 font-semibold text-4xl"
+        >
           👉ADMIN👌👌👌💯💯👇
         </Link>
         {profile ? (

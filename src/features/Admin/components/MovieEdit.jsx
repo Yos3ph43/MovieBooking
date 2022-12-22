@@ -144,7 +144,17 @@ const MovieEdit = (props) => {
         getValueFromEvent={normFile}
         // extra="longgggggggggggggggggggggggggggggggggg"
       >
-        <Upload name="hinhAnh" action="/upload.do" listType="picture">
+        <Upload
+          name="hinhAnh"
+          action="/upload.do"
+          listType="picture"
+          // defaultFileList={[
+          //   {
+          //     name: movieDetail && movieDetail.hinhAnh,
+          //     url: movieDetail && movieDetail.hinhAnh,
+          //   },
+          // ]}
+        >
           <Button icon={<UploadOutlined />}>Click to upload</Button>
         </Upload>
       </Form.Item>
