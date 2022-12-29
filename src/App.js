@@ -1,6 +1,6 @@
 import Header from "components/Header";
 import Admin from "features/Admin/Admin";
-import MovieEdit from "features/Admin/components/MovieEdit";
+import AddMovie from "features/Admin/components/AddMovie";
 import MovieManage from "features/Admin/components/MovieManage";
 import UserManage from "features/Admin/components/UserManage";
 import Booking from "features/Booking/Booking";
@@ -22,7 +22,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/admin" element={<Admin />}>
           <Route path="/admin/movieManage" element={<MovieManage />} />
-          <Route path="/admin/addMovie" element={<MovieEdit />} />
+          <Route path="/admin/addMovie" element={<AddMovie />} />
           <Route path="/admin/userManage" element={<UserManage />} />
         </Route>
       </Routes>

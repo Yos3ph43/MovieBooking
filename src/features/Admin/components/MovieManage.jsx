@@ -30,11 +30,13 @@ const MovieManage = () => {
     setMovieId("");
   };
   //table head
+
   const columns = [
     {
       title: "Movie ID",
       dataIndex: "movieId",
       key: "movieId",
+      sorter: (a, b) => a.movieId - b.movieId,
     },
     {
       title: "Image",

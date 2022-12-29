@@ -9,4 +9,5 @@ export const apiPath = {
   BOOKING: "/api/QuanLyDatVe/LayDanhSachPhongVe",
   CINEMA_CLUSTER: "/api/QuanLyRap/LayThongTinCumRapTheoHeThong",
   DELETE_MOVIE: "/api/QuanLyPhim/XoaPhim",
+  CREATE_MOVIE: "/api/QuanLyPhim/ThemPhimUploadHinh",
 };

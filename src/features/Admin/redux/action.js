@@ -48,3 +48,19 @@ export const deleteSeletedMovie = (id) => async (next) => {
     console.log(error);
   }
 };
+
+export const creatMovieAction = (formData) => async () => {
+  try {
+    const res = await requestor({
+      method: "POST",
+      url: apiPath.CREATE_MOVIE,
+      params: {
+        frm: formData,
+      },
+    });
+    alert("Thêm phim thành công");
+    console.log(res.data.content);
+  } catch (error) {
+    console.log(error.response.data.content);
+  }
+};
