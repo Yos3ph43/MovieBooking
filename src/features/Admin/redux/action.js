@@ -54,9 +54,7 @@ export const creatMovieAction = (formData) => async () => {
     const res = await requestor({
       method: "POST",
       url: apiPath.CREATE_MOVIE,
-      params: {
-        frm: formData,
-      },
+      data: formData,
     });
     alert("Thêm phim thành công");
     console.log(res.data.content);

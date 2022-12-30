@@ -40,10 +40,10 @@ const AddMovie = () => {
         if (key !== "hinhAnh") {
           formData.append(key, values[key]);
         } else {
-          formData.append("hinhAnh", values.hinhAnh, values.hinhAnh.name);
+          formData.append("hinhAnh", values.hinhAnh);
         }
+        console.log(`${key}:`, formData.get(key));
       }
-      console.log(formData.get("hinhAnh"));
       dispatch(creatMovieAction(formData));
     },
   });
