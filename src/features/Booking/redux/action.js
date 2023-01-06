@@ -80,3 +80,16 @@ export const fetchBooking = (movieId) => async (next) => {
     console.log(error);
   }
 };
+
+export const bookingAction = (dataInput) => async (next) => {
+  try {
+    const res = await requestor({
+      method: "POST",
+      url: apiPath.BOOKING_SEAT,
+      data: dataInput,
+    });
+    next({ type: actions.SET_BOOKING_SEAT, payload: res.data.content });
+  } catch (error) {
+    console.log(error);
+  }
+};

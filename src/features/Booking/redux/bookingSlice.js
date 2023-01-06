@@ -7,6 +7,7 @@ const initialState = {
   cinemaSchedule: [],
   movieDetail: null,
   booking: null,
+  // seat: [],
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -29,6 +30,9 @@ const reducer = (state = initialState, { type, payload }) => {
         break;
       case actions.SET_BOOKING:
         draft.booking = payload;
+        break;
+      case actions.SET_BOOKING_SEAT:
+        draft.seat = payload;
         break;
       default:
         break;
