@@ -6,11 +6,19 @@ import UserManage from "features/Admin/components/UserManage";
 import Booking from "features/Booking/Booking";
 import MovieDetail from "features/Booking/Detail";
 import Home from "features/Booking/Home";
+import UserInfo from "features/Booking/UserInfo";
 import Login from "features/Login/Login";
+import { fetchProfileAction } from "features/Login/redux/action";
 import Signup from "features/Login/Signup";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchProfileAction);
+  }, []);
   return (
     <BrowserRouter>
       <Header />
@@ -20,6 +28,7 @@ function App() {
         <Route path="/booking/:id" element={<Booking />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/userinfo" element={<UserInfo />} />
         <Route path="/admin" element={<Admin />}>
           <Route path="/admin/movieManage" element={<MovieManage />} />
           <Route path="/admin/addMovie" element={<AddMovie />} />

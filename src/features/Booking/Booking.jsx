@@ -1,34 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useMemo } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { bookingAction, fetchBooking } from "./redux/action";
 import { Button } from "antd";
 import clsx from "clsx";
 import "./Product.css";
 
 const Booking = () => {
-  const handleConfirmBooking = async (value) => {
-    try {
-      await dispatch(bookingAction(value));
-      console.log(value);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   const [list, bookingSeat] = useState([]);
-  // const [seat, pendingSeat] = useState([list]);
+  // const [total, pendingSeat] = useState(0);
+  console.log(list);
   let newList = [...list];
-  // console.log(list);
-  const handleChoosingSeat = () => {};
-
+  // let total = [];
+  // const handleChoosingSeat = () => {};
+  // const sum = useRef(0);
+  // useEffect(() => {
+  // sum.current += 1;
+  // });
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const params = useParams();
   useEffect(() => {
     dispatch(fetchBooking(params.id));
-  }, [params]);
+  }, [params, list]);
   const booking = useSelector((state) => state.booking.booking);
+  const userLogin = useSelector((state) => state.user.profile);
+  //
+  // useMemo();
+  //
   console.log(booking);
+  const handleConfirmBooking = () => {
+    if (!userLogin)
+      return navigate("/login"), alert("Vui lòng đăng nhập để đặt vé");
+
+    const bookedInput = [];
+    for (const item of list) {
+      const picked = (({ maGhe, giaVe }) => ({ maGhe, giaVe }))(item);
+      bookedInput.push(picked);
+    }
+    if (bookedInput.length <= 0) return alert("Chưa có ghế nào được chọn");
+    bookingSeat([]);
+    const confirmBookingData = {
+      maLichChieu: booking.thongTinPhim.maLichChieu,
+      danhSachVe: bookedInput,
+    };
+
+    try {
+      dispatch(bookingAction(confirmBookingData));
+      alert("Đặt vé thành công");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     booking && (
       <div className="container mx-auto">
@@ -61,7 +85,6 @@ const Booking = () => {
                       ),
                     })}
                     disabled={seat.daDat}
-                    // className="h-14 w-14 text-center"
                   >
                     {seat.tenGhe}
                   </Button>
@@ -94,21 +117,27 @@ const Booking = () => {
                   <td>{booking.thongTinPhim.tenPhim}</td>
                   <td>
                     {list.map((item) => {
-                      return <span>{item.tenGhe},</span>;
+                      return <span key={item.maGhe}>{item.tenGhe},</span>;
                     })}
                   </td>
                   <td>
-                    {list.map((item) => {
-                      //banh xác conti
-                      const total = item.giaVe;
+                    {/* {list?.find((item) => {
                       console.log(item.giaVe);
-                      return <>{total}</>;
-                    })}
+                      total.push(item.giaVe);
+                      console.log(total);
+                      total.map(() => {
+                        return <>{total}</>;
+                      });
+                      return <> {total}</>;
+                    })} */}
+                    {/* {list.giaVe} */}
                   </td>
                 </tr>
               </tbody>
             </table>
-            <Button>Đặt vé</Button>
+            <Button danger onClick={handleConfirmBooking}>
+              Đặt vé
+            </Button>
             <div className="m-3">
               <div className="m-2">
                 <Button className="bg-white" disabled></Button>

@@ -11,4 +11,5 @@ export const apiPath = {
   DELETE_MOVIE: "/api/QuanLyPhim/XoaPhim",
   CREATE_MOVIE: "/api/QuanLyPhim/ThemPhimUploadHinh",
   BOOKING_SEAT: "/api/QuanLyDatVe/DatVe",
+  USER_PROFILE: "/api/QuanLyNguoiDung/ThongTinTaiKhoan",
 };

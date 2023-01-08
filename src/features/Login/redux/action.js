@@ -27,7 +27,7 @@ export const signUpAction = (userInput) => {
       const res = await requestor({
         method: "POST",
         url: apiPath.SIGNUP,
-        data: userInput,
+        DanhSachVe: userInput,
       });
       next({
         type: actions.SET_SIGNUP,
@@ -38,7 +38,20 @@ export const signUpAction = (userInput) => {
     }
   };
 };
-
+export const fetchProfileAction = async (next) => {
+  try {
+    const res = await requestor({
+      method: "POST",
+      url: apiPath.USER_PROFILE,
+    });
+    next({
+      type: actions.SET_PROFILE,
+      payload: res.data.content,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 export const logoutAction = () => {
   return async (next) => {
     next({

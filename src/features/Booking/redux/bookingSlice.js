@@ -7,7 +7,7 @@ const initialState = {
   cinemaSchedule: [],
   movieDetail: null,
   booking: null,
-  // seat: [],
+  // bookedseat: [],
 };
 
 const reducer = (state = initialState, { type, payload }) => {

@@ -81,12 +81,12 @@ export const fetchBooking = (movieId) => async (next) => {
   }
 };
 
-export const bookingAction = (dataInput) => async (next) => {
+export const bookingAction = (inputData) => async (next) => {
   try {
     const res = await requestor({
       method: "POST",
       url: apiPath.BOOKING_SEAT,
-      data: dataInput,
+      data: inputData,
     });
     next({ type: actions.SET_BOOKING_SEAT, payload: res.data.content });
   } catch (error) {

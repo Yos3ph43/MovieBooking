@@ -1,17 +1,18 @@
 import { Button } from "antd";
-import { logoutAction } from "features/Login/redux/action";
+import { fetchProfileAction, logoutAction } from "features/Login/redux/action";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const Header = () => {
-  let profile = useSelector((state) => state.user.profile);
+  const profile = useSelector((state) => state.user.profile);
   console.log(profile);
   const dispatch = useDispatch();
+
   const handleLogout = async () => {
-    profile = null;
     try {
       await dispatch(logoutAction());
+      localStorage.setItem("token", null);
     } catch (error) {
       console.log(error);
     }
