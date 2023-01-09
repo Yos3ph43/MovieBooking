@@ -7,6 +7,7 @@ import SetSchedule from "./SetSchedule";
 import MovieEdit from "./MovieEdit";
 import { deleteSeletedMovie, fetchMovies } from "../redux/action";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const MovieManage = () => {
   const dispatch = useDispatch();
@@ -41,7 +42,6 @@ const MovieManage = () => {
       title: "Movie ID",
       dataIndex: "movieId",
       key: "movieId",
-      sorter: (a, b) => a.movieId - b.movieId,
     },
     {
       title: "Image",
@@ -75,15 +75,18 @@ const MovieManage = () => {
       action: (
         <div>
           <Space size="middle">
-            <Button
-              onClick={() => {
-                showModal();
-                setMovieId(item.maPhim);
-              }}
-              className="bg-sky-800 text-white border-white hover:border-sky-600 hover:text-sky-600 hover:bg-neutral-800"
-            >
-              <EditFilled />
-            </Button>
+            <Link to={`/admin/editMovie/${item.maPhim}`}>
+              <Button
+                // onClick={() => {
+                //   showModal();
+                //   setMovieId(item.maPhim);
+                // }}
+                className="bg-sky-800 text-white border-white hover:border-sky-600 hover:text-sky-600 hover:bg-neutral-800"
+              >
+                <EditFilled />
+              </Button>
+            </Link>
+
             <Button
               onClick={() => {
                 showModal1();
@@ -112,14 +115,14 @@ const MovieManage = () => {
   return (
     <div>
       <div className="my-5">
-        <Button
+        {/* <Button
           onClick={() => {
             showModal();
             setMovieId(null);
           }}
         >
           Add Movie
-        </Button>
+        </Button> */}
       </div>
       <Table columns={columns} dataSource={data} />
       <Modal

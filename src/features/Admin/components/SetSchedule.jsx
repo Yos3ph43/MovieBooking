@@ -8,15 +8,14 @@ const SetSchedule = (props) => {
   const [form] = Form.useForm();
   //handle form
   const onFinish = (values) => {
-    console.log(values);
+    console.log(JSON.stringify(values));
   };
-  const onReset = () => {
-    form.resetFields();
-  };
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchDetail(props.movieId));
   }, [props.movieId]);
+
   const movieDetail = useSelector((state) => state.admin.movieDetail);
   const cinemas = useSelector((state) => state.admin.cinemas);
   const [cinemaCluster, setCinemaCluster] = useState([]);

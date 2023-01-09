@@ -13,4 +13,5 @@ export const apiPath = {
   BOOKING_SEAT: "/api/QuanLyDatVe/DatVe",
   USER_PROFILE: "/api/QuanLyNguoiDung/ThongTinTaiKhoan",
   USER_UPDATE_INFO: "/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
+  UPDATE_MOVIE: "/api/QuanLyPhim/CapNhatPhimUpload",
 };
