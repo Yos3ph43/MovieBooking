@@ -2,23 +2,65 @@ import React, { useState } from "react";
 import { Button, DatePicker, Form, InputNumber, Select } from "antd";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDetail } from "../redux/action";
+import {
+  fetchCinemas,
+  fetchDetail,
+  setMovieScheduleAction,
+} from "../redux/action";
 import { fetchCinemaCluster } from "../utils/fetchCinema";
+import { useFormik } from "formik";
 const SetSchedule = (props) => {
-  const [form] = Form.useForm();
-  //handle form
-  const onFinish = (values) => {
-    console.log(JSON.stringify(values));
-  };
-
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(fetchCinemas);
     dispatch(fetchDetail(props.movieId));
   }, [props.movieId]);
-
   const movieDetail = useSelector((state) => state.admin.movieDetail);
   const cinemas = useSelector((state) => state.admin.cinemas);
   const [cinemaCluster, setCinemaCluster] = useState([]);
+
+  //handle form
+  // const onFinish = (values) => {
+  //   let formData = JSON.stringify(values);
+  //   console.log(formData);
+  //   dispatch(setMovieScheduleAction(values));
+  // };
+
+  const formik = useFormik({
+    initialValues: {
+      maPhim: movieDetail?.maPhim,
+      ngayChieuGioChieu: "",
+      maRap: "",
+      giaVe: 0,
+    },
+    onSubmit: (values) => {
+      console.log("value:", values);
+      let formData = new FormData();
+      for (let key in values) {
+        formData.append(key, values[key]);
+
+        console.log(`${key}:`, formData.get(key));
+      }
+      dispatch(setMovieScheduleAction(formData));
+    },
+  });
+  const handleChangeDatePicker = (value) => {
+    let date = value.format("DD/MM/YYYY hh:mm:ss");
+    console.log(date, value);
+    formik.setFieldValue("ngayChieuGioChieu", date);
+  };
+  const onOk = (value) => {
+    let date = value.format("DD/MM/YYYY hh:mm:ss");
+    console.log(date, value);
+    formik.setFieldValue("ngayChieuGioChieu", date);
+  };
+  const handleChangeCluster = (value) => {
+    formik.setFieldValue("maRap", value);
+  };
+  const handleChangeInputNumber = (value) => {
+    formik.setFieldValue("giaVe", value);
+  };
+
   return (
     movieDetail && (
       <div className="flex">
@@ -28,26 +70,14 @@ const SetSchedule = (props) => {
         </div>
         <div className="w-4/5 mt-10">
           <Form
+            onSubmitCapture={formik.handleSubmit}
             labelCol={{
               span: 4,
             }}
             wrapperCol={{
               span: 14,
             }}
-            layout="horizontal"
-            initialValues={{
-              size: "default",
-            }}
-            onFinish={onFinish}
-            size="default"
           >
-            <Form.Item
-              name="maPhim"
-              initialValue={movieDetail.maPhim}
-              className="hidden"
-            >
-              <InputNumber />
-            </Form.Item>
             <Form.Item label="Hệ Thống Rạp">
               <Select
                 onChange={(value) => {
@@ -68,9 +98,9 @@ const SetSchedule = (props) => {
                 ))}
               </Select>
             </Form.Item>
+
             <Form.Item
               label="Cụm Rạp"
-              name="maRap"
               rules={[
                 {
                   required: true,
@@ -78,46 +108,29 @@ const SetSchedule = (props) => {
                 },
               ]}
             >
-              <Select>
-                {console.log(cinemaCluster.length)}
-                {cinemaCluster.length > 0 ? (
-                  cinemaCluster.map((itemCluster) => (
-                    <Select.Option
-                      value={itemCluster.maCumRap}
-                      key={itemCluster.maCumRap}
-                    >
-                      {itemCluster.tenCumRap}
-                    </Select.Option>
-                  ))
-                ) : (
-                  <Select.Option value={null}> Chọn hệ thống rạp</Select.Option>
-                )}
-              </Select>
+              <Select
+                onChange={handleChangeCluster}
+                onOk={onOk}
+                options={
+                  cinemaCluster.length > 0
+                    ? cinemaCluster.map((itemCluster) => ({
+                        label: itemCluster.tenCumRap,
+                        value: itemCluster.maCumRap,
+                      }))
+                    : [{ label: "Chọn hệ thống rạp", value: 0 }]
+                }
+              ></Select>
             </Form.Item>
 
-            <Form.Item
-              label="Ngày giờ chiếu"
-              name="ngayChieuGioChieu"
-              rules={[
-                {
-                  required: true,
-                  message: "Xin chọn ngày chiếu",
-                },
-              ]}
-            >
-              <DatePicker />
+            <Form.Item label="Ngày giờ chiếu">
+              <DatePicker
+                format="DD/MM/YYYY hh:mm:ss"
+                showTime
+                onChange={handleChangeDatePicker}
+              />
             </Form.Item>
-            <Form.Item
-              label="Giá vé"
-              name="giaVe"
-              rules={[
-                {
-                  required: true,
-                  message: "Xin nhập giá vé",
-                },
-              ]}
-            >
-              <InputNumber />
+            <Form.Item label="Giá vé">
+              <InputNumber onChange={handleChangeInputNumber} />
             </Form.Item>
 
             <Form.Item>

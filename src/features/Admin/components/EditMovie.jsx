@@ -59,14 +59,14 @@ const EditMovie = () => {
       dispatch(updateMovieAction(formData));
     },
   });
-  const handleChangeFile = (e) => {
+  const handleChangeFile = async (e) => {
     let file = e.target.files[0];
     if (
       file.type === "image/jpeg" ||
       file.type === "image/png" ||
       file.type === "image/gif"
     ) {
-      formik.setFieldValue("hinhAnh", file);
+      await formik.setFieldValue("hinhAnh", file);
       let reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = (e) => {

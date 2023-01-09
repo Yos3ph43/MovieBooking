@@ -33,11 +33,11 @@ const navItems = [
 ];
 
 const Admin = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchMovies);
-    dispatch(fetchCinemas);
-  }, []);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(fetchMovies);
+  //   dispatch(fetchCinemas);
+  // }, []);
 
   return (
     <div>

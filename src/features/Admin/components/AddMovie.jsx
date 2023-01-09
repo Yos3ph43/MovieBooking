@@ -34,7 +34,7 @@ const AddMovie = () => {
       hinhAnh: {},
     },
     onSubmit: (values) => {
-      console.log("value:", values);
+      // console.log("value:", values);
       let formData = new FormData();
       for (let key in values) {
         if (key !== "hinhAnh") {
@@ -42,7 +42,7 @@ const AddMovie = () => {
         } else {
           formData.append("hinhAnh", values.hinhAnh);
         }
-        console.log(`${key}:`, formData.get(key));
+        // console.log(`${key}:`, formData.get(key));
       }
       dispatch(createMovieAction(formData));
     },

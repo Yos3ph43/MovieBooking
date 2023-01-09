@@ -76,3 +76,16 @@ export const updateMovieAction = (formData) => async () => {
     alert(error.response.data.content);
   }
 };
+
+export const setMovieScheduleAction = (data) => async () => {
+  try {
+    const res = await requestor({
+      method: "POST",
+      url: apiPath.SET_MOVIE_SCHEDULE,
+      data: data,
+    });
+    console.log(res.data.content);
+  } catch (error) {
+    console.log(error);
+  }
+};
