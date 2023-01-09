@@ -7,6 +7,7 @@ import { loginAction } from "./redux/action";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // const navToSignUp = () => navigate("/signup");
   const handleLogin = async (value) => {
     console.log(value);
     try {
@@ -83,6 +84,9 @@ const Login = () => {
             </Button>
           </Form.Item>
         </Form>
+        {/* <Button type="primary" onClick={navToSignUp}>
+          Don't have account?
+        </Button> */}
         <div>
           <p>duc3636</p>
           <p>nguyen1</p>

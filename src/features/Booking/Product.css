@@ -1,0 +1,21 @@
+.product {
+  width: 3rem;
+  border-radius: 5px;
+  height: 3rem;
+  margin: 0.5rem;
+  transition: all 0.25s;
+  text-align: center;
+}
+.product:hover {
+  color: white;
+  background-color: black;
+}
+.product.booked {
+  background-color: red;
+  color: white;
+}
+.product.booking {
+  background-color: #ffc107;
+  color: black;
+  border: #ffc107 1px solid;
+}
