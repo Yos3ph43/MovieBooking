@@ -3,6 +3,7 @@ import { Button, DatePicker, Form, Input, Rate, Switch } from "antd";
 import { useDispatch } from "react-redux";
 import { creatMovieAction } from "../redux/action";
 import moment from "moment";
+// import moment from "moment/moment";
 import { useFormik } from "formik";
 import TextArea from "antd/es/input/TextArea";
 import { useState } from "react";
@@ -63,8 +64,10 @@ const AddMovie = () => {
     }
   };
   const handleChangeDatePicker = (value) => {
-    formik.setFieldValue("ngayKhoiChieu", moment(value).format("DD/MM/YYYY"));
+    let date = value.format("DD/MM/YYYY");
+    formik.setFieldValue("ngayKhoiChieu", date);
   };
+
   const handleChangeSwitches = (name) => (value) => {
     formik.setFieldValue(name, value);
   };
