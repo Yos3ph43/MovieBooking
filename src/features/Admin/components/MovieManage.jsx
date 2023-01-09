@@ -83,10 +83,10 @@ const MovieManage = () => {
 
             <Link to={`/admin/setMovieSchedule/${item.maPhim}`}>
               <Button
-                onClick={() => {
-                  showModal1();
-                  setMovieId(item.maPhim);
-                }}
+                // onClick={() => {
+                //   showModal1();
+                //   setMovieId(item.maPhim);
+                // }}
                 className="bg-green-800 text-white border-white hover:border-green-600 hover:text-green-600 hover:bg-neutral-800"
               >
                 <ScheduleFilled />
