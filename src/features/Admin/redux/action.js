@@ -85,7 +85,9 @@ export const setMovieScheduleAction = (data) => async () => {
       data: data,
     });
     console.log(res.data.content);
+    alert(res.data.content);
   } catch (error) {
     console.log(error);
+    alert(error.response?.data.content);
   }
 };

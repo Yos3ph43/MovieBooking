@@ -76,33 +76,30 @@ const MovieManage = () => {
         <div>
           <Space size="middle">
             <Link to={`/admin/editMovie/${item.maPhim}`}>
-              <Button
-                // onClick={() => {
-                //   showModal();
-                //   setMovieId(item.maPhim);
-                // }}
-                className="bg-sky-800 text-white border-white hover:border-sky-600 hover:text-sky-600 hover:bg-neutral-800"
-              >
+              <Button className="bg-sky-800 text-white border-white hover:border-sky-600 hover:text-sky-600 hover:bg-neutral-800">
                 <EditFilled />
               </Button>
             </Link>
 
-            <Button
-              onClick={() => {
-                showModal1();
-                setMovieId(item.maPhim);
-              }}
-              className="bg-green-800 text-white border-white hover:border-green-600 hover:text-green-600 hover:bg-neutral-800"
-            >
-              <ScheduleFilled />
-            </Button>
+            <Link to={`/admin/setMovieSchedule/${item.maPhim}`}>
+              <Button
+                onClick={() => {
+                  showModal1();
+                  setMovieId(item.maPhim);
+                }}
+                className="bg-green-800 text-white border-white hover:border-green-600 hover:text-green-600 hover:bg-neutral-800"
+              >
+                <ScheduleFilled />
+              </Button>
+            </Link>
+
             <Button className="bg-red-800 text-white border-white hover:border-red-600 hover:text-red-600 hover:bg-neutral-800">
               <DeleteFilled
-                onClick={() => {
-                  dispatch(deleteSeletedMovie(item.maPhim));
-                  dispatch(fetchMovies);
-                  setShouldUpdate(-1);
-                }}
+              // onClick={() => {
+              //   dispatch(deleteSeletedMovie(item.maPhim));
+              //   dispatch(fetchMovies);
+              //   setShouldUpdate(-1);
+              // }}
               />
             </Button>
           </Space>

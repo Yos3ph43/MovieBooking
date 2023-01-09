@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, DatePicker, Form, InputNumber, Select } from "antd";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   fetchCinemas,
   fetchDetail,
@@ -9,12 +10,15 @@ import {
 } from "../redux/action";
 import { fetchCinemaCluster } from "../utils/fetchCinema";
 import { useFormik } from "formik";
+import { useParams } from "react-router-dom";
 const SetSchedule = (props) => {
+  const params = useParams();
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCinemas);
-    dispatch(fetchDetail(props.movieId));
-  }, [props.movieId]);
+    dispatch(fetchDetail(params.id));
+  }, [params.id]);
   const movieDetail = useSelector((state) => state.admin.movieDetail);
   const cinemas = useSelector((state) => state.admin.cinemas);
   const [cinemaCluster, setCinemaCluster] = useState([]);
@@ -28,20 +32,15 @@ const SetSchedule = (props) => {
 
   const formik = useFormik({
     initialValues: {
-      maPhim: movieDetail?.maPhim,
+      maPhim: params.id,
       ngayChieuGioChieu: "",
       maRap: "",
       giaVe: 0,
     },
     onSubmit: (values) => {
       console.log("value:", values);
-      let formData = new FormData();
-      for (let key in values) {
-        formData.append(key, values[key]);
 
-        console.log(`${key}:`, formData.get(key));
-      }
-      dispatch(setMovieScheduleAction(formData));
+      dispatch(setMovieScheduleAction(values));
     },
   });
   const handleChangeDatePicker = (value) => {
@@ -110,7 +109,6 @@ const SetSchedule = (props) => {
             >
               <Select
                 onChange={handleChangeCluster}
-                onOk={onOk}
                 options={
                   cinemaCluster.length > 0
                     ? cinemaCluster.map((itemCluster) => ({
@@ -127,10 +125,15 @@ const SetSchedule = (props) => {
                 format="DD/MM/YYYY hh:mm:ss"
                 showTime
                 onChange={handleChangeDatePicker}
+                onOk={onOk}
               />
             </Form.Item>
             <Form.Item label="Giá vé">
-              <InputNumber onChange={handleChangeInputNumber} />
+              <InputNumber
+                min={75000}
+                max={200000}
+                onChange={handleChangeInputNumber}
+              />
             </Form.Item>
 
             <Form.Item>
