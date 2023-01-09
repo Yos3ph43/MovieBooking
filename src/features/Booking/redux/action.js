@@ -93,3 +93,21 @@ export const bookingAction = (inputData) => async (next) => {
     console.log(error);
   }
 };
+
+export const updateUserAction = (userInput) => {
+  return async (next) => {
+    try {
+      const res = await requestor({
+        method: "PUT",
+        url: apiPath.USER_UPDATE_INFO,
+        data: userInput,
+      });
+      next({
+        type: actions.SET_USER_UPDATE_INFO,
+        payload: res.data.content,
+      });
+    } catch (error) {
+      throw error;
+    }
+  };
+};

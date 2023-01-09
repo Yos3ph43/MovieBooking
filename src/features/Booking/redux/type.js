@@ -8,6 +8,7 @@ const actions = {
   SET_MOVIE_DETAIL: `${sliceName}/SET_MOVIE_DETAIL`,
   SET_BOOKING: `${sliceName}/SET_BOOKING`,
   SET_BOOKING_SEAT: `${sliceName}/SET_BOOKING_SEAT`,
+  SET_USER_UPDATE_INFO: `${sliceName}/SET_USER_UPDATE_INFO`,
 };
 
 export default actions;

@@ -36,9 +36,12 @@ const Header = () => {
           <span className="text-indigo-100 text-xl">
             {" "}
             YOKOSO :{" "}
-            <span className="text-indigo-300 font-bold ml-1">
+            <Link
+              to="/userinfo"
+              className="text-indigo-300 font-bold ml-1 no-underline hover:text-yellow-300"
+            >
               {profile?.hoTen}
-            </span>{" "}
+            </Link>{" "}
             <Button
               onClick={handleLogout}
               className="ml-10"

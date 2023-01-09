@@ -12,4 +12,5 @@ export const apiPath = {
   CREATE_MOVIE: "/api/QuanLyPhim/ThemPhimUploadHinh",
   BOOKING_SEAT: "/api/QuanLyDatVe/DatVe",
   USER_PROFILE: "/api/QuanLyNguoiDung/ThongTinTaiKhoan",
+  USER_UPDATE_INFO: "/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
 };

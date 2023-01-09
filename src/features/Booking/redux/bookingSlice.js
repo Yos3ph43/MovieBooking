@@ -34,6 +34,9 @@ const reducer = (state = initialState, { type, payload }) => {
       case actions.SET_BOOKING_SEAT:
         draft.seat = payload;
         break;
+      case actions.SET_USER_UPDATE_INFO:
+        draft.profile = payload;
+        break;
       default:
         break;
     }
