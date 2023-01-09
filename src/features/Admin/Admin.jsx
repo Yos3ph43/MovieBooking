@@ -40,26 +40,6 @@ const Admin = () => {
   }, []);
 
   return (
-    //Old layout with tabs
-    // <div className="container mx-auto flex bg">
-    //   <Tabs
-    //     defaultActiveKey="1"
-    //     tabPosition="left"
-    //     size="large"
-    //     items={[
-    //       {
-    //         label: `User`,
-    //         key: "1",
-    //         children: <UserManage />,
-    //       },
-    //       {
-    //         label: `Movies`,
-    //         key: "2",
-    //         children: <MovieManage />,
-    //       },
-    //     ]}
-    //   />
-    // </div>
     <div>
       <Layout>
         <Content

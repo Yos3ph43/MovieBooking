@@ -6,9 +6,14 @@ import { DeleteFilled, ScheduleFilled, EditFilled } from "@ant-design/icons";
 import SetSchedule from "./SetSchedule";
 import MovieEdit from "./MovieEdit";
 import { deleteSeletedMovie, fetchMovies } from "../redux/action";
+import { useEffect } from "react";
 
 const MovieManage = () => {
   const dispatch = useDispatch();
+  const [shouldUpdate, setShouldUpdate] = useState(0);
+  useEffect(() => {
+    dispatch(fetchMovies);
+  }, [shouldUpdate]);
   const movies = useSelector((state) => state.admin.movies);
 
   const [movieId, setMovieId] = useState("");
@@ -93,6 +98,7 @@ const MovieManage = () => {
                 onClick={() => {
                   dispatch(deleteSeletedMovie(item.maPhim));
                   dispatch(fetchMovies);
+                  setShouldUpdate(-1);
                 }}
               />
             </Button>
