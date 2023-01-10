@@ -20,13 +20,11 @@ const formItemLayout = {
 
 const EditMovie = () => {
   const params = useParams();
-  console.log(params.id);
   useEffect(() => {
     dispatch(fetchDetail(params.id));
   }, [params.id]);
   const dispatch = useDispatch();
   let item = useSelector((state) => state.admin.movieDetail);
-  console.log(item);
 
   const [movieImg, setMovieImg] = useState("");
   const formik = useFormik({
@@ -60,7 +58,7 @@ const EditMovie = () => {
     },
   });
   const handleChangeFile = async (e) => {
-    let file = e.target.files[0];
+    let file = e.target.files[0] || {};
     if (
       file.type === "image/jpeg" ||
       file.type === "image/png" ||
@@ -74,11 +72,16 @@ const EditMovie = () => {
       };
     }
   };
+
   const handleChangeDatePicker = (value) => {
+    console.log(value);
+    if (!value) return;
     let date = value.format("DD/MM/YYYY");
-    // let date = moment(value);
+    console.log(date);
     formik.setFieldValue("ngayKhoiChieu", date);
   };
+
+  console.log(formik.values);
 
   const handleChangeSwitches = (name) => (value) => {
     formik.setFieldValue(name, value);
@@ -89,6 +92,9 @@ const EditMovie = () => {
       name="validate_other"
       {...formItemLayout}
       onSubmitCapture={formik.handleSubmit}
+      initialValues={{
+        ngayKhoiChieu: moment(formik.values.ngayKhoiChieu),
+      }}
     >
       {/* Movie name input */}
       <Form.Item label="Tên Phim">
@@ -118,13 +124,8 @@ const EditMovie = () => {
       </Form.Item>
 
       {/* Date picker */}
-      <Form.Item label="Ngày khởi chiếu">
-        <DatePicker
-          format={"DD/MM/YYYY"}
-          onChange={handleChangeDatePicker}
-          value={moment(formik.values.ngayKhoiChieu)}
-          //   value={moment(formik.values.ngayKhoiChieu, "DD/MM/YYYY")}
-        />
+      <Form.Item name="ngayKhoiChieu" label="Ngày khởi chiếu">
+        <DatePicker onChange={handleChangeDatePicker} format="DD/MM/YYYY" />
       </Form.Item>
 
       {/* Switches  */}

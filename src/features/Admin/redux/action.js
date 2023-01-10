@@ -66,7 +66,7 @@ export const updateMovieAction = (formData) => async () => {
   try {
     const res = await requestor({
       method: "POST",
-      url: apiPath.CREATE_MOVIE,
+      url: apiPath.UPDATE_MOVIE,
       data: formData,
     });
     alert("Cập nhật thành công");
