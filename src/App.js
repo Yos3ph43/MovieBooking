@@ -3,6 +3,7 @@ import Admin from "features/Admin/Admin";
 import AddMovie from "features/Admin/components/AddMovie";
 import MovieManage from "features/Admin/components/MovieManage";
 import UserManage from "features/Admin/components/UserManage";
+import EditMovie from "features/Admin/components/EditMovie";
 import Booking from "features/Booking/Booking";
 import MovieDetail from "features/Booking/Detail";
 import Home from "features/Booking/Home";
@@ -13,6 +14,7 @@ import Signup from "features/Login/Signup";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import SetSchedule from "features/Admin/components/SetSchedule";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +34,8 @@ function App() {
         <Route path="/admin" element={<Admin />}>
           <Route path="/admin/movieManage" element={<MovieManage />} />
           <Route path="/admin/addMovie" element={<AddMovie />} />
+          <Route path="/admin/editMovie/:id" element={<EditMovie />} />
+          <Route path="/admin/setMovieSchedule/:id" element={<SetSchedule />} />
           <Route path="/admin/userManage" element={<UserManage />} />
         </Route>
       </Routes>

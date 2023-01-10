@@ -49,19 +49,46 @@ export const deleteSeletedMovie = (id) => async (next) => {
   }
 };
 
-export const creatMovieAction = (formData) => async () => {
+export const createMovieAction = (formData) => async () => {
   try {
     const res = await requestor({
       method: "POST",
       url: apiPath.CREATE_MOVIE,
-      params: {
-        frm: formData,
-      },
+      data: formData,
     });
     alert("Thêm phim thành công");
     console.log(res.data.content);
   } catch (error) {
     console.log(error.response.data.content);
+  }
+};
+export const updateMovieAction = (formData) => async () => {
+  try {
+    const res = await requestor({
+      method: "POST",
+      url: apiPath.CREATE_MOVIE,
+      data: formData,
+    });
+    alert("Cập nhật thành công");
+    console.log(res.data.content);
+  } catch (error) {
+    console.log(error.response.data.content);
+    alert(error.response.data.content);
+  }
+};
+
+export const setMovieScheduleAction = (data) => async () => {
+  try {
+    const res = await requestor({
+      method: "POST",
+      url: apiPath.SET_MOVIE_SCHEDULE,
+      data: data,
+    });
+    console.log(res.data.content);
+    alert(res.data.content);
+  } catch (error) {
+    console.log(error);
+    alert(error.response?.data.content);
   }
 };
 

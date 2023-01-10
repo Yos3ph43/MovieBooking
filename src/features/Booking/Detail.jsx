@@ -34,6 +34,7 @@ const Detail = () => {
     movie &&
     movie.trailer.includes("watch?v=") &&
     movie.trailer.replace("watch?v=", "embed/");
+  //  if (!trailer) trailer = movie.trailer;
 
   return (
     movie && (
@@ -119,7 +120,7 @@ const Detail = () => {
             ref={videoTrailer}
             width="100%"
             height="580"
-            src={trailer}
+            src={movie.trailer}
             title={movie.tenPhim}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen

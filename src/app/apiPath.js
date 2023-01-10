@@ -13,6 +13,8 @@ export const apiPath = {
   BOOKING_SEAT: "/api/QuanLyDatVe/DatVe",
   USER_PROFILE: "/api/QuanLyNguoiDung/ThongTinTaiKhoan",
   USER_UPDATE_INFO: "/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
+  UPDATE_MOVIE: "/api/QuanLyPhim/CapNhatPhimUpload",
+  SET_MOVIE_SCHEDULE: "/api/QuanLyDatVe/TaoLichChieu",
   USER_ADD: "/api/QuanLyNguoiDung/ThemNguoiDung",
   USER_DELETE: "/api/QuanLyNguoiDung/XoaNguoiDung",
 };

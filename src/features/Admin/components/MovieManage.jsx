@@ -6,9 +6,15 @@ import { DeleteFilled, ScheduleFilled, EditFilled } from "@ant-design/icons";
 import SetSchedule from "./SetSchedule";
 import MovieEdit from "./MovieEdit";
 import { deleteSeletedMovie, fetchMovies } from "../redux/action";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const MovieManage = () => {
   const dispatch = useDispatch();
+  const [shouldUpdate, setShouldUpdate] = useState(0);
+  useEffect(() => {
+    dispatch(fetchMovies);
+  }, [shouldUpdate]);
   const movies = useSelector((state) => state.admin.movies);
 
   const [movieId, setMovieId] = useState("");
@@ -36,7 +42,6 @@ const MovieManage = () => {
       title: "Movie ID",
       dataIndex: "movieId",
       key: "movieId",
-      sorter: (a, b) => a.movieId - b.movieId,
     },
     {
       title: "Image",
@@ -70,30 +75,31 @@ const MovieManage = () => {
       action: (
         <div>
           <Space size="middle">
-            <Button
-              onClick={() => {
-                showModal();
-                setMovieId(item.maPhim);
-              }}
-              className="bg-sky-800 text-white border-white hover:border-sky-600 hover:text-sky-600 hover:bg-neutral-800"
-            >
-              <EditFilled />
-            </Button>
-            <Button
-              onClick={() => {
-                showModal1();
-                setMovieId(item.maPhim);
-              }}
-              className="bg-green-800 text-white border-white hover:border-green-600 hover:text-green-600 hover:bg-neutral-800"
-            >
-              <ScheduleFilled />
-            </Button>
+            <Link to={`/admin/editMovie/${item.maPhim}`}>
+              <Button className="bg-sky-800 text-white border-white hover:border-sky-600 hover:text-sky-600 hover:bg-neutral-800">
+                <EditFilled />
+              </Button>
+            </Link>
+
+            <Link to={`/admin/setMovieSchedule/${item.maPhim}`}>
+              <Button
+                // onClick={() => {
+                //   showModal1();
+                //   setMovieId(item.maPhim);
+                // }}
+                className="bg-green-800 text-white border-white hover:border-green-600 hover:text-green-600 hover:bg-neutral-800"
+              >
+                <ScheduleFilled />
+              </Button>
+            </Link>
+
             <Button className="bg-red-800 text-white border-white hover:border-red-600 hover:text-red-600 hover:bg-neutral-800">
               <DeleteFilled
-                onClick={() => {
-                  dispatch(deleteSeletedMovie(item.maPhim));
-                  dispatch(fetchMovies);
-                }}
+              // onClick={() => {
+              //   dispatch(deleteSeletedMovie(item.maPhim));
+              //   dispatch(fetchMovies);
+              //   setShouldUpdate(-1);
+              // }}
               />
             </Button>
           </Space>
@@ -106,14 +112,14 @@ const MovieManage = () => {
   return (
     <div>
       <div className="my-5">
-        <Button
+        {/* <Button
           onClick={() => {
             showModal();
             setMovieId(null);
           }}
         >
           Add Movie
-        </Button>
+        </Button> */}
       </div>
       <Table columns={columns} dataSource={data} />
       <Modal

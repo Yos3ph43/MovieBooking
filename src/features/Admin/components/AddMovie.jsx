@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, DatePicker, Form, Input, Rate, Switch } from "antd";
 import { useDispatch } from "react-redux";
-import { creatMovieAction } from "../redux/action";
+import { createMovieAction } from "../redux/action";
 import moment from "moment";
 import { useFormik } from "formik";
 import TextArea from "antd/es/input/TextArea";
@@ -34,17 +34,17 @@ const AddMovie = () => {
       hinhAnh: {},
     },
     onSubmit: (values) => {
-      console.log("value:", values);
+      // console.log("value:", values);
       let formData = new FormData();
       for (let key in values) {
         if (key !== "hinhAnh") {
           formData.append(key, values[key]);
         } else {
-          formData.append("hinhAnh", values.hinhAnh, values.hinhAnh.name);
+          formData.append("hinhAnh", values.hinhAnh);
         }
+        // console.log(`${key}:`, formData.get(key));
       }
-      console.log(formData.get("hinhAnh"));
-      dispatch(creatMovieAction(formData));
+      dispatch(createMovieAction(formData));
     },
   });
   const handleChangeFile = (e) => {
@@ -63,8 +63,10 @@ const AddMovie = () => {
     }
   };
   const handleChangeDatePicker = (value) => {
-    formik.setFieldValue("ngayKhoiChieu", moment(value).format("DD/MM/YYYY"));
+    let date = value.format("DD/MM/YYYY");
+    formik.setFieldValue("ngayKhoiChieu", date);
   };
+
   const handleChangeSwitches = (name) => (value) => {
     formik.setFieldValue(name, value);
   };
