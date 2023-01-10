@@ -64,3 +64,34 @@ export const creatMovieAction = (formData) => async () => {
     console.log(error.response.data.content);
   }
 };
+
+//user
+export const addUserAction = (formData) => async (next) => {
+  try {
+    const res = await requestor({
+      method: "POST",
+      url: apiPath.USER_ADD,
+      nd: formData,
+    });
+    alert("Thêm người dùng thành công");
+    console.log(res.data.content);
+    next({ type: actions.SET_ADD_USER, payload: res.data.content });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteUserAction = (formData) => async (next) => {
+  try {
+    const res = await requestor({
+      method: "DELETE",
+      url: apiPath.CREATE_MOVIE,
+      TaiKhoan: formData,
+    });
+    alert("Xóa người dùng thành công");
+    console.log(res.data.content);
+    next({ type: actions.SET_DELETE_USER, payload: res.data.content });
+  } catch (error) {
+    console.log(error);
+  }
+};

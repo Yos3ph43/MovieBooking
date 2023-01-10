@@ -27,7 +27,7 @@ export const signUpAction = (userInput) => {
       const res = await requestor({
         method: "POST",
         url: apiPath.SIGNUP,
-        DanhSachVe: userInput,
+        data: userInput,
       });
       next({
         type: actions.SET_SIGNUP,

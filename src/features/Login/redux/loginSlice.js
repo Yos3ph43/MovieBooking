@@ -13,6 +13,8 @@ const reducer = (state = initialState, { type, payload }) => {
         break;
       case actions.SET_SIGNUP:
         drafe.profile = payload;
+        break;
+
       default:
         break;
     }
