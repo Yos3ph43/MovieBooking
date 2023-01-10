@@ -141,7 +141,7 @@ const UserInfo = () => {
         )}
       </div>
       <h1>Lịch sử đặt vé</h1>
-      {userInfo?.thongTinDatVe.map((seatInfo) => {
+      {userInfo.thongTinDatVe?.map((seatInfo) => {
         console.log(seatInfo);
         return (
           <div key={seatInfo.maVe} className="">
@@ -152,7 +152,7 @@ const UserInfo = () => {
             </div>
             <>
               <h1>Chi tiết vé đã đặt</h1>
-              {seatInfo?.danhSachGhe.map((seat) => {
+              {seatInfo.danhSachGhe?.map((seat) => {
                 console.log(seat);
                 return (
                   <div key={seat.maGhe}>

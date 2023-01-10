@@ -3,6 +3,8 @@ const actions = {
   SET_MOVIES: `${sliceName}/SET_MOVIES`,
   SET_MOVIE_DETAIL: `${sliceName}/SET_MOVIE_DETAIL`,
   SET_CINEMAS: `${sliceName}/SET_CINEMAS`,
+  SET_ADD_USER: `${sliceName}/SET_ADD_USER`,
+  SET_DELETE_USER: `${sliceName}/SET_DELETE_USER`,
 };
 
 export default actions;
