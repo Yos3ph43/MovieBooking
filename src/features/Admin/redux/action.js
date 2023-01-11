@@ -1,4 +1,4 @@
-import requestor from "app/api";
+import requestor, { requestorUser } from "app/api";
 import { apiPath } from "app/apiPath";
 import actions from "./type";
 
@@ -95,11 +95,9 @@ export const setMovieScheduleAction = (data) => async () => {
 //user
 export const fetchAllUserInfo = () => async (next) => {
   try {
-    const res = await requestor({
+    const res = await requestorUser({
       method: "GET",
       url: apiPath.ALL_USER_INFO,
-      MaNhom: "GP00",
-      tuKhoa: "",
     });
     next({ type: actions.SET_ALL_USER_INFO, payload: res.data.content });
   } catch (error) {
