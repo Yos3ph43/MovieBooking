@@ -93,6 +93,20 @@ export const setMovieScheduleAction = (data) => async () => {
 };
 
 //user
+export const fetchAllUserInfo = () => async (next) => {
+  try {
+    const res = await requestor({
+      method: "GET",
+      url: apiPath.ALL_USER_INFO,
+      MaNhom: "GP00",
+      tuKhoa: "",
+    });
+    next({ type: actions.SET_ALL_USER_INFO, payload: res.data.content });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const addUserAction = (formData) => async (next) => {
   try {
     const res = await requestor({

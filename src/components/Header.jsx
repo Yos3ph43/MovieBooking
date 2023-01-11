@@ -1,12 +1,11 @@
 import { Button } from "antd";
-import { fetchProfileAction, logoutAction } from "features/Login/redux/action";
+import { logoutAction } from "features/Login/redux/action";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   const profile = useSelector((state) => state.user.profile);
-  console.log(profile);
   const dispatch = useDispatch();
 
   const handleLogout = async () => {

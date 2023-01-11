@@ -17,4 +17,5 @@ export const apiPath = {
   SET_MOVIE_SCHEDULE: "/api/QuanLyDatVe/TaoLichChieu",
   USER_ADD: "/api/QuanLyNguoiDung/ThemNguoiDung",
   USER_DELETE: "/api/QuanLyNguoiDung/XoaNguoiDung",
+  ALL_USER_INFO: "/api/QuanLyNguoiDung/LayDanhSachNguoiDung",
 };
