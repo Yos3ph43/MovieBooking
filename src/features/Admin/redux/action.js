@@ -120,17 +120,17 @@ export const addUserAction = (formData) => async (next) => {
   }
 };
 
-export const deleteUserAction = (formData) => async (next) => {
+export const deleteUserAction = (userId) => async (next) => {
   try {
-    const res = await requestor({
+    const res = await requestorUser({
       method: "DELETE",
-      url: apiPath.CREATE_MOVIE,
-      TaiKhoan: formData,
+      url: apiPath.USER_DELETE,
+      TaiKhoan: userId,
     });
     alert("Xóa người dùng thành công");
     console.log(res.data.content);
-    next({ type: actions.SET_DELETE_USER, payload: res.data.content });
+    // next({ type: actions.SET_DELETE_USER, payload: res.data.content });
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };

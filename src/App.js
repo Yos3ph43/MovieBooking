@@ -15,6 +15,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SetSchedule from "features/Admin/components/SetSchedule";
+import UserAdd from "features/Admin/components/UserAdd";
+import UserEdit from "features/Admin/components/UserEdit";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +39,8 @@ function App() {
           <Route path="/admin/editMovie/:id" element={<EditMovie />} />
           <Route path="/admin/setMovieSchedule/:id" element={<SetSchedule />} />
           <Route path="/admin/userManage" element={<UserManage />} />
+          <Route path="/admin/userAdd" element={<UserAdd />} />
+          <Route path="/admin/userEdit" element={<UserEdit />} />
         </Route>
       </Routes>
     </BrowserRouter>

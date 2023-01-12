@@ -8,7 +8,6 @@ const Signup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleAddNew = async (value) => {
-    console.log(value);
     try {
       await dispatch(signUpAction(value));
       navigate("/login");

@@ -22,16 +22,12 @@ export const loginAction = (userLogin) => {
 };
 
 export const signUpAction = (userInput) => {
-  return async (next) => {
+  return async () => {
     try {
-      const res = await requestor({
+      await requestor({
         method: "POST",
         url: apiPath.SIGNUP,
         data: userInput,
-      });
-      next({
-        type: actions.SET_SIGNUP,
-        payload: res.data.content,
       });
     } catch (error) {
       throw error;
