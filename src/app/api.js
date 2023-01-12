@@ -16,11 +16,18 @@ export const requestorUser = axios.create({
   },
   params: {
     maNhom: "GP00",
-    // TaiKhoan: null,
   },
 });
 
 requestor.interceptors.request.use((req) => {
+  req.headers = {
+    ...req.headers,
+    Authorization: "Bearer " + localStorage.getItem("token"),
+  };
+
+  return req;
+});
+requestorUser.interceptors.request.use((req) => {
   req.headers = {
     ...req.headers,
     Authorization: "Bearer " + localStorage.getItem("token"),

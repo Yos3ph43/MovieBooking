@@ -125,11 +125,12 @@ export const deleteUserAction = (userId) => async (next) => {
     const res = await requestorUser({
       method: "DELETE",
       url: apiPath.USER_DELETE,
-      TaiKhoan: userId,
+      params: { TaiKhoan: userId },
     });
-    alert("Xóa người dùng thành công");
+    console.log(res);
+    next({ type: actions.SET_DELETE_USER, payload: res.data.content });
+    alert(res.data.content);
     console.log(res.data.content);
-    // next({ type: actions.SET_DELETE_USER, payload: res.data.content });
   } catch (error) {
     throw error;
   }

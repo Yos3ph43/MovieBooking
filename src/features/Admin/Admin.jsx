@@ -13,7 +13,17 @@ const navItems = [
   {
     key: "1",
     icon: <UserOutlined />,
-    label: <NavLink to="/admin/userManage">User</NavLink>,
+    label: "User",
+    children: [
+      {
+        key: "user1",
+        label: <NavLink to="/admin/userManage">Manage User</NavLink>,
+      },
+      {
+        key: "user2",
+        label: <NavLink to="/admin/userAdd">Add User</NavLink>,
+      },
+    ],
   },
   {
     key: "2",

@@ -6,28 +6,24 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { Button, Dropdown, Input, Modal, Select, Space, Table } from "antd";
+import { current } from "immer";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, NavLink, useNavigate, useParams } from "react-router-dom";
 import { deleteUserAction, fetchAllUserInfo } from "../redux/action";
 
 const UserManage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const params = useParams();
-  // console.log(params);
+  const params = useParams();
+  console.log(params);
+  const [current, setCurrent] = useState(0);
   useEffect(() => {
     dispatch(fetchAllUserInfo());
   }, []);
   const profile = useSelector((state) => state.admin.allUser);
   console.log(profile);
-  // const handleDeleteUser = async (input) => {
-  //   try {
-  //     await dispatch(deleteUserAction(input));
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+
   const columns = [
     {
       title: "User ID",
@@ -76,7 +72,7 @@ const UserManage = () => {
       soDT: <p>{item.soDT}</p>,
       maLoaiNguoiDung: <p>{item.maLoaiNguoiDung}</p>,
       action: (
-        <div>
+        <div key={item.taiKhoan}>
           <Space size="middle">
             <Link
             // to={`/admin/editMovie/${item.maPhim}`}
@@ -90,6 +86,8 @@ const UserManage = () => {
               <DeleteFilled
                 onClick={() => {
                   dispatch(deleteUserAction(item.taiKhoan));
+                  // setCurrent(current + 1);
+                  // dispatch(fetchAllUserInfo());
                 }}
               />
             </Button>
@@ -103,14 +101,6 @@ const UserManage = () => {
   return (
     <div>
       <div className="my-5">
-        <Button
-          onClick={() => {
-            // showModal();
-            // setUser(null);
-          }}
-        >
-          Add User
-        </Button>
         {/* user search  */}
         <div>
           <Space>
