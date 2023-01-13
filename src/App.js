@@ -40,7 +40,7 @@ function App() {
           <Route path="/admin/setMovieSchedule/:id" element={<SetSchedule />} />
           <Route path="/admin/userManage" element={<UserManage />} />
           <Route path="/admin/userAdd" element={<UserAdd />} />
-          <Route path="/admin/userEdit" element={<UserEdit />} />
+          <Route path="/admin/userEdit/:id" element={<UserEdit />} />
         </Route>
       </Routes>
     </BrowserRouter>

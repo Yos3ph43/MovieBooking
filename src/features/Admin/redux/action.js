@@ -105,33 +105,31 @@ export const fetchAllUserInfo = () => async (next) => {
   }
 };
 
-export const addUserAction = (formData) => async (next) => {
+export const addUserAction = (formData) => async () => {
   try {
     const res = await requestor({
       method: "POST",
       url: apiPath.USER_ADD,
-      nd: formData,
+      data: formData,
     });
+    console.log(res);
     alert("Thêm người dùng thành công");
     console.log(res.data.content);
-    next({ type: actions.SET_ADD_USER, payload: res.data.content });
   } catch (error) {
-    console.log(error);
+    throw alert(error.response.data.content);
   }
 };
 
-export const deleteUserAction = (userId) => async (next) => {
+export const deleteUserAction = (userId) => async () => {
   try {
     const res = await requestorUser({
       method: "DELETE",
       url: apiPath.USER_DELETE,
       params: { TaiKhoan: userId },
     });
-    console.log(res);
-    next({ type: actions.SET_DELETE_USER, payload: res.data.content });
     alert(res.data.content);
-    console.log(res.data.content);
   } catch (error) {
+    alert(error.response.data.content);
     throw error;
   }
 };

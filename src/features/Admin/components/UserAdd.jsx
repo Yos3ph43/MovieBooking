@@ -1,19 +1,18 @@
 import { Button, Input, Select, Form } from "antd";
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { addUserAction } from "../redux/action";
 
 const UserAdd = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [current, setCurrent] = useState(0);
   const handleAddNew = (value) => {
-    console.log(value);
-    //   //   try {
-    //   //     await dispatch();
-    //   //     navigate("/login");
-    //   //   } catch (error) {
-    //   //     window.alert(error.response.data.content);
-    //   //   }
+    dispatch(addUserAction(value));
+    setCurrent(current + 1);
   };
   return (
     <div className="container ">
@@ -90,7 +89,7 @@ const UserAdd = () => {
           </Form.Item>
 
           <Form.Item
-            labelCol={{ offset: 0 }}
+            labelCol={{ span: 9 }}
             initialValue="GP"
             label="Group number"
             name="maNhom"
