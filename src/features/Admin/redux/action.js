@@ -113,7 +113,7 @@ export const addUserAction = (formData) => async () => {
       data: formData,
     });
     console.log(res);
-    alert("Thêm người dùng thành công");
+    alert("Thêm thành công");
     console.log(res.data.content);
   } catch (error) {
     throw alert(error.response.data.content);
@@ -131,5 +131,39 @@ export const deleteUserAction = (userId) => async () => {
   } catch (error) {
     alert(error.response.data.content);
     throw error;
+  }
+};
+
+export const fetchProfileByIdAction = (profileId) => {
+  return async (next) => {
+    try {
+      const res = await requestor({
+        method: "POST",
+        url: apiPath.USER_PROFILE_BY_ID,
+        params: { taiKhoan: profileId },
+      });
+      console.log("alo");
+      next({
+        type: actions.SET_PROFILE_BY_ID,
+        payload: res.data.content,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const editUserAction = (formData) => async () => {
+  try {
+    const res = await requestor({
+      method: "POST",
+      url: apiPath.USER_UPDATE_INFO,
+      data: formData,
+    });
+    console.log(res);
+    alert("Cập nhật thành công");
+    console.log(res.data.content);
+  } catch (error) {
+    throw alert(error.response.data.content);
   }
 };

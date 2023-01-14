@@ -3,7 +3,11 @@ import { Button, Input, Space, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { deleteUserAction, fetchAllUserInfo } from "../redux/action";
+import {
+  deleteUserAction,
+  fetchAllUserInfo,
+  fetchProfileByIdAction,
+} from "../redux/action";
 
 const UserManage = () => {
   const dispatch = useDispatch();

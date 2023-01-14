@@ -18,4 +18,5 @@ export const apiPath = {
   USER_ADD: "/api/QuanLyNguoiDung/ThemNguoiDung",
   USER_DELETE: "/api/QuanLyNguoiDung/XoaNguoiDung",
   ALL_USER_INFO: "/api/QuanLyNguoiDung/LayDanhSachNguoiDung",
+  USER_PROFILE_BY_ID: "/api/QuanLyNguoiDung/LayThongTinNguoiDung",
 };
