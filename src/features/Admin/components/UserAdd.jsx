@@ -5,14 +5,20 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addUserAction } from "../redux/action";
+import actions from "../redux/type";
 
 const UserAdd = () => {
+  const [form] = Form.useForm();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [current, setCurrent] = useState(0);
+
   const handleAddNew = (value) => {
-    dispatch(addUserAction(value));
-    setCurrent(current + 1);
+    // dispatch(addUserAction(value));
+    // setCurrent(+1);
+    navigate("/admin/userManage");
+    // form.resetFields();
   };
   return (
     <div className="container ">
@@ -25,9 +31,9 @@ const UserAdd = () => {
           wrapperCol={{
             span: 16,
           }}
-          initialValues={{
-            remember: true,
-          }}
+          // initialValues={{
+          //   remember: true,
+          // }}
           onFinish={handleAddNew}
           autoComplete="off"
         >

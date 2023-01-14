@@ -95,11 +95,11 @@ const MovieManage = () => {
 
             <Button className="bg-red-800 text-white border-white hover:border-red-600 hover:text-red-600 hover:bg-neutral-800">
               <DeleteFilled
-              // onClick={() => {
-              //   dispatch(deleteSeletedMovie(item.maPhim));
-              //   dispatch(fetchMovies);
-              //   setShouldUpdate(-1);
-              // }}
+                onClick={() => {
+                  dispatch(deleteSeletedMovie(item.maPhim));
+                  dispatch(fetchMovies);
+                  setShouldUpdate(-1);
+                }}
               />
             </Button>
           </Space>

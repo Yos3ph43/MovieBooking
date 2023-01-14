@@ -74,7 +74,6 @@ export const fetchBooking = (movieId) => async (next) => {
         MaLichChieu: movieId,
       },
     });
-    console.log(res.data.content);
     next({ type: actions.SET_BOOKING, payload: res.data.content });
   } catch (error) {
     console.log(error);

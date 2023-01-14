@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo } from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -9,15 +9,8 @@ import "./Product.css";
 
 const Booking = () => {
   const [list, bookingSeat] = useState([]);
-  // const [total, pendingSeat] = useState(0);
-  console.log(list);
   let newList = [...list];
-  // let total = [];
-  // const handleChoosingSeat = () => {};
-  // const sum = useRef(0);
-  // useEffect(() => {
-  // sum.current += 1;
-  // });
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const params = useParams();
@@ -26,10 +19,7 @@ const Booking = () => {
   }, [params, list]);
   const booking = useSelector((state) => state.booking.booking);
   const userLogin = useSelector((state) => state.user.profile);
-  //
-  // useMemo();
-  //
-  console.log(booking);
+
   const handleConfirmBooking = () => {
     if (!userLogin)
       return navigate("/login"), alert("Vui lòng đăng nhập để đặt vé");
@@ -121,16 +111,9 @@ const Booking = () => {
                     })}
                   </td>
                   <td>
-                    {/* {list?.find((item) => {
-                      console.log(item.giaVe);
-                      total.push(item.giaVe);
-                      console.log(total);
-                      total.map(() => {
-                        return <>{total}</>;
-                      });
-                      return <> {total}</>;
-                    })} */}
-                    {/* {list.giaVe} */}
+                    {list.reduce((total, item) => {
+                      return (total += item.giaVe);
+                    }, 0)}
                   </td>
                 </tr>
               </tbody>
