@@ -24,12 +24,14 @@ export const loginAction = (userLogin) => {
 export const signUpAction = (userInput) => {
   return async () => {
     try {
-      await requestor({
+      const res = await requestor({
         method: "POST",
         url: apiPath.SIGNUP,
         data: userInput,
       });
+      console.log(res);
     } catch (error) {
+      console.log(error);
       throw error;
     }
   };

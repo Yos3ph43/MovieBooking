@@ -98,7 +98,7 @@ const MovieManage = () => {
                 onClick={() => {
                   dispatch(deleteSeletedMovie(item.maPhim));
                   dispatch(fetchMovies);
-                  setShouldUpdate(-1);
+                  setShouldUpdate(shouldUpdate - 1);
                 }}
               />
             </Button>

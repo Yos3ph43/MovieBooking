@@ -59,7 +59,8 @@ export const createMovieAction = (formData) => async () => {
     alert("Thêm phim thành công");
     console.log(res.data.content);
   } catch (error) {
-    console.log(error.response.data.content);
+    console.log(error);
+    alert(error.response?.data.content);
   }
 };
 export const updateMovieAction = (formData) => async () => {
@@ -72,8 +73,8 @@ export const updateMovieAction = (formData) => async () => {
     alert("Cập nhật thành công");
     console.log(res.data.content);
   } catch (error) {
-    console.log(error.response.data.content);
-    alert(error.response.data.content);
+    console.log(error);
+    alert(error.response?.data.content);
   }
 };
 
