@@ -1,5 +1,5 @@
 import { DeleteFilled, EditFilled } from "@ant-design/icons";
-import { Button, Input, Space, Table } from "antd";
+import { Button, Checkbox, Form, Input, Space, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,17 +7,23 @@ import {
   deleteUserAction,
   fetchAllUserInfo,
   fetchProfileByIdAction,
+  searchUserAction,
 } from "../redux/action";
 
 const UserManage = () => {
+  const profile = useSelector((state) => state.admin.allUser);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const handleSearchUser = (value) => {
+    dispatch(searchUserAction(value.tuKhoa, value.MaNhom));
+  };
+  // const handleResetLayout = () => {
+  // };
   const [current, setCurrent] = useState(0);
   useEffect(() => {
     dispatch(fetchAllUserInfo());
   }, [current]);
-  const profile = useSelector((state) => state.admin.allUser);
   console.log(profile);
 
   const columns = [
@@ -96,16 +102,40 @@ const UserManage = () => {
       <div className="my-5">
         {/* user search  */}
         <div>
-          <Space>
-            <Input
-            // onChange={}
-            />
-            <Button
-            // onClick={}
+          <Form
+            name="basic"
+            wrapperCol={{ span: 6 }}
+            initialValues={{ remember: true }}
+            onFinish={handleSearchUser}
+            autoComplete="off"
+          >
+            <Form.Item
+              name="tuKhoa"
+              rules={[{ required: true, message: "Please input user name!" }]}
             >
-              Tìm kiếm
-            </Button>
-          </Space>
+              <Input />
+            </Form.Item>
+            {/* hidden  */}
+            <Form.Item name="MaNhom" initialValue="GP00" hidden>
+              <Input disabled />
+            </Form.Item>
+            <Form.Item>
+              <Space>
+                <Button type="primary" htmlType="submit">
+                  Search
+                </Button>
+                <Button
+                  type="primary"
+                  danger
+                  onClick={() => {
+                    dispatch(fetchAllUserInfo());
+                  }}
+                >
+                  Cancel
+                </Button>
+              </Space>
+            </Form.Item>
+          </Form>
         </div>
       </div>
       <Table columns={columns} dataSource={data} />

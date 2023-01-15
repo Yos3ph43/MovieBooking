@@ -26,7 +26,7 @@ const UserAdd = () => {
         <Form
           name="basic"
           labelCol={{
-            span: 8,
+            span: 10,
           }}
           wrapperCol={{
             span: 16,
@@ -95,7 +95,6 @@ const UserAdd = () => {
           </Form.Item>
 
           <Form.Item
-            labelCol={{ span: 9 }}
             initialValue="GP"
             label="Group number"
             name="maNhom"

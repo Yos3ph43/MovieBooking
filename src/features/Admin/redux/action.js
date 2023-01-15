@@ -156,15 +156,32 @@ export const fetchProfileByIdAction = (profileId) => {
 
 export const editUserAction = (formData) => async () => {
   try {
-    const res = await requestor({
+    await requestor({
       method: "POST",
       url: apiPath.USER_UPDATE_INFO,
       data: formData,
     });
-    console.log(res);
     alert("Cập nhật thành công");
-    console.log(res.data.content);
   } catch (error) {
+    throw alert(error.response.data.content);
+  }
+};
+
+export const searchUserAction = (input1, input2) => async (next) => {
+  try {
+    const res = await requestorUser({
+      method: "GET",
+      url: apiPath.SEARCH_USER_BY_ID,
+      params: { tuKhoa: input1, MaNhom: input2 },
+    });
+
+    next({
+      type: actions.SET_ALL_USER_INFO,
+      payload: res.data.content,
+    });
+  } catch (error) {
+    console.log(error);
+
     throw alert(error.response.data.content);
   }
 };
