@@ -120,16 +120,7 @@ const MovieManage = () => {
   //main render
   return (
     <div>
-      <div className="my-5">
-        {/* <Button
-          onClick={() => {
-            showModal();
-            setMovieId(null);
-          }}
-        >
-          Add Movie
-        </Button> */}
-      </div>
+      <div className="my-5"></div>
       <Table columns={columns} dataSource={data} />
       <Modal
         open={isModalOpen}

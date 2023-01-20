@@ -45,6 +45,7 @@ const MovieEdit = (props) => {
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
     dispatch(updateMovieAction(values));
+    console.log(moment(movieDetail.ngayKhoiChieu));
   };
 
   return (
@@ -87,10 +88,10 @@ const MovieEdit = (props) => {
             name: ["danhGia"],
             value: movieDetail.danhGia,
           },
-          // {
-          //   name: ["ngayKhoiChieu"],
-          //   value: moment(movieDetail.ngayKhoiChieu),
-          // },
+          {
+            name: ["ngayKhoiChieu"],
+            value: moment(movieDetail.ngayKhoiChieu, "DD/MM/YYYY"),
+          },
           // {
           //   name: ["hinhAnh"],
           //   value: movieDetail && movieDetail.hinhAnh,

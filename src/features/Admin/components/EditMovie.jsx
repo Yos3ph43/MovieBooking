@@ -25,7 +25,6 @@ const EditMovie = () => {
   }, [params.id]);
   const dispatch = useDispatch();
   let item = useSelector((state) => state.admin.movieDetail);
-
   const [movieImg, setMovieImg] = useState("");
   const formik = useFormik({
     enableReinitialize: true,
@@ -42,6 +41,7 @@ const EditMovie = () => {
       maNhom: item?.maNhom,
       hinhAnh: null,
     },
+
     onSubmit: (values) => {
       console.log("value:", values);
       let formData = new FormData();
@@ -55,6 +55,7 @@ const EditMovie = () => {
         console.log(`${key}:`, formData.get(key));
       }
       dispatch(updateMovieAction(formData));
+      console.log(formik.values.ngayKhoiChieu);
     },
   });
   const handleChangeFile = async (e) => {
@@ -74,12 +75,13 @@ const EditMovie = () => {
   };
 
   const handleChangeDatePicker = (value) => {
-    console.log(value);
-    if (!value) return;
-    let date = value.format("DD/MM/YYYY");
-    console.log(date);
-    formik.setFieldValue("ngayKhoiChieu", date);
-    // formik.setFieldValue("ngayKhoiChieu", value);
+    // console.log(value);
+    // if (!value) return;
+    // let date = value.format("DD/MM/YYYY");
+    // console.log(date);
+    // formik.setFieldValue("ngayKhoiChieu", date);
+
+    formik.setFieldValue("ngayKhoiChieu", value.format("DD/MM/YYYY"));
   };
 
   console.log(formik.values);
@@ -93,9 +95,6 @@ const EditMovie = () => {
       name="validate_other"
       {...formItemLayout}
       onSubmitCapture={formik.handleSubmit}
-      initialValues={{
-        ngayKhoiChieu: moment(formik.values.ngayKhoiChieu),
-      }}
     >
       {/* Movie name input */}
       <Form.Item label="Tên Phim">
@@ -126,8 +125,11 @@ const EditMovie = () => {
 
       {/* Date picker */}
       <Form.Item name="ngayKhoiChieu" label="Ngày khởi chiếu">
-        <DatePicker onChange={handleChangeDatePicker} format="DD/MM/YYYY" />
-        {/* <input type={"date"} onChange={handleChangeDatePicker} /> */}
+        <DatePicker
+          defaultValue={dayjs(formik.values.ngayKhoiChieu)}
+          onChange={handleChangeDatePicker}
+          format="DD/MM/YYYY"
+        />
       </Form.Item>
 
       {/* Switches  */}
