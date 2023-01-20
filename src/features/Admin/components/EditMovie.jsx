@@ -55,6 +55,7 @@ const EditMovie = () => {
         console.log(`${key}:`, formData.get(key));
       }
       dispatch(updateMovieAction(formData));
+      console.log(dayjs(formik.values.ngayKhoiChieu));
       console.log(formik.values.ngayKhoiChieu);
     },
   });
