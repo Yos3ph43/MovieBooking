@@ -20,10 +20,10 @@ const formItemLayout = {
 
 const EditMovie = () => {
   const params = useParams();
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchDetail(params.id));
   }, [params.id]);
-  const dispatch = useDispatch();
   let item = useSelector((state) => state.admin.movieDetail);
   const [movieImg, setMovieImg] = useState("");
   const formik = useFormik({
@@ -56,9 +56,14 @@ const EditMovie = () => {
       }
       dispatch(updateMovieAction(formData));
       console.log(dayjs(formik.values.ngayKhoiChieu));
-      console.log(formik.values.ngayKhoiChieu);
+      let date = `${formik.values.ngayKhoiChieu}`;
+      console.log(date.slice(0, 10));
     },
   });
+  const date = `${formik.values.ngayKhoiChieu}`;
+  const dateTrim = date.slice(0, 10);
+  if (dateTrim !== undefined) console.log(dateTrim);
+
   const handleChangeFile = async (e) => {
     let file = e.target.files[0] || {};
     if (
