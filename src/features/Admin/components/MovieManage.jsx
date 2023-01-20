@@ -102,6 +102,15 @@ const MovieManage = () => {
                 }}
               />
             </Button>
+            {/* <Button
+              className="bg-red-800 text-white border-white hover:border-red-600 hover:text-red-600 hover:bg-neutral-800"
+              onClick={() => {
+                showModal();
+                setMovieId(item.maPhim);
+              }}
+            >
+              Edit ko formik
+            </Button> */}
           </Space>
         </div>
       ),

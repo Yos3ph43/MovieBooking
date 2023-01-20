@@ -79,6 +79,7 @@ const EditMovie = () => {
     let date = value.format("DD/MM/YYYY");
     console.log(date);
     formik.setFieldValue("ngayKhoiChieu", date);
+    // formik.setFieldValue("ngayKhoiChieu", value);
   };
 
   console.log(formik.values);
@@ -126,6 +127,7 @@ const EditMovie = () => {
       {/* Date picker */}
       <Form.Item name="ngayKhoiChieu" label="Ngày khởi chiếu">
         <DatePicker onChange={handleChangeDatePicker} format="DD/MM/YYYY" />
+        {/* <input type={"date"} onChange={handleChangeDatePicker} /> */}
       </Form.Item>
 
       {/* Switches  */}
