@@ -82,13 +82,14 @@ const UserManage = () => {
               </Button>
             </Link>
 
-            <Button className="bg-red-800 text-white border-white hover:border-red-600 hover:text-red-600 hover:bg-neutral-800">
-              <DeleteFilled
-                onClick={() => {
-                  dispatch(deleteUserAction(item.taiKhoan));
-                  setCurrent(current + 1);
-                }}
-              />
+            <Button
+              className="bg-red-800 text-white border-white hover:border-red-600 hover:text-red-600 hover:bg-neutral-800"
+              onClick={() => {
+                dispatch(deleteUserAction(item.taiKhoan));
+                setCurrent(current + 1);
+              }}
+            >
+              <DeleteFilled />
             </Button>
           </Space>
         </div>
