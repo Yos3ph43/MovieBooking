@@ -17,6 +17,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SetSchedule from "features/Admin/components/SetSchedule";
 import UserAdd from "features/Admin/components/UserAdd";
 import UserEdit from "features/Admin/components/UserEdit";
+import AppRoute from "app/AppRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,8 +30,11 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/detail/:id" element={<MovieDetail />} />
-        <Route path="/booking/:id" element={<Booking />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/booking/:id"
+          element={<AppRoute element={Booking} isPrivate />}
+        />
+        <Route path="/login" element={<AppRoute element={Login} isAuth />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/userinfo" element={<UserInfo />} />
         <Route path="/admin" element={<Admin />}>

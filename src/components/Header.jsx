@@ -23,18 +23,17 @@ const Header = () => {
           to="/"
           className="text-indigo-300 no-underline text-2xl font-semibold"
         >
-          Cyborg Movie
+          CyberMovie
         </Link>
         <Link
           to="/admin/userManage"
-          className="text-red-600 font-semibold text-4xl"
+          className="text-red-600 font-semibold text-4xl no-underline"
         >
-          👉ADMIN👌👌👌💯💯👇
+          To Admin
         </Link>
         {profile ? (
           <span className="text-indigo-100 text-xl">
-            {" "}
-            YOKOSO :{" "}
+            Welcome,
             <Link
               to="/userinfo"
               className="text-indigo-300 font-bold ml-1 no-underline hover:text-yellow-300"

@@ -56,6 +56,6 @@ export const logoutAction = () => {
       type: actions.SET_PROFILE,
       payload: null,
     });
-    localStorage.setItem("token", null);
+    localStorage.removeItem("token");
   };
 };

@@ -86,7 +86,9 @@ const Detail = () => {
                                     to={`/booking/${itemSchedule.maLichChieu}`}
                                   >
                                     <Button className="bg-indigo-900 text-slate-200 m-1">
-                                      {itemSchedule.ngayChieuGioChieu}
+                                      {moment(
+                                        itemSchedule.ngayChieuGioChieu
+                                      ).format("DD / MM / YYYY ~ HH:mm")}
                                     </Button>
                                   </Link>
                                 </div>

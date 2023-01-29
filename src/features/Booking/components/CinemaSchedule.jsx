@@ -28,30 +28,36 @@ const CinemaSchedule = () => {
           return {
             key: item.maHeThongRap,
             label: (
-              <div className="">
+              <div>
                 <img alt="" src={item.logo} className="h-12" />
               </div>
             ),
             children: cinemaSchedule.length > 0 && (
               <Tabs
-                className="text-slate-100 overflow-y-auto h-100"
+                className="text-slate-100 overflow-y-auto h-100 "
                 tabPosition="left"
                 items={cinemaSchedule[0].lstCumRap.map((itemCinema) => {
                   return {
                     key: itemCinema.maCumRap,
                     label: (
-                      <div className="w-96 text-left ">
-                        <p>{itemCinema.tenCumRap}</p>
+                      <div
+                        className="w-96 text-left border-neutral-600"
+                        style={{ borderBottom: "solid 1px" }}
+                      >
+                        <p className="font-semibold text-lg ">
+                          {itemCinema.tenCumRap}
+                        </p>
                         <p>{itemCinema.diaChi}</p>
                       </div>
                     ),
                     children: itemCinema.danhSachPhim.map((itemMovies) => (
                       <div
-                        className="flex items-center "
+                        className="flex items-center border-neutral-500 pb-3"
+                        style={{ borderBottom: "solid 1px" }}
                         key={itemMovies.maPhim}
                       >
                         <div className="info mr-4 w-1/6">
-                          <h1 className="font-normal text-base">
+                          <h1 className="font-semibold text-lg text-center text-indigo-100">
                             {itemMovies.tenPhim}
                           </h1>
                           <img
@@ -70,7 +76,7 @@ const CinemaSchedule = () => {
                                 <Button className="bg-indigo-900 text-slate-200 m-1">
                                   {moment(
                                     itemMovieSchedule.ngayChieuGioChieu
-                                  ).format("DD/MM/YYYY ~ h:mm a")}
+                                  ).format("DD/MM/YYYY ~ HH:mm")}
                                 </Button>
                               </Link>
                             )
