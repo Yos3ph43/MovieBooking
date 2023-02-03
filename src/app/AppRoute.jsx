@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
-const AppRoute = ({ element: Comp, isPrivate, isAuth }) => {
+const AppRoute = ({ element: Comp, isPrivate, isAuth, isAdmin }) => {
   const token = localStorage.getItem("token");
   const user = useSelector((state) => state.user.profile);
   if (isPrivate) {
@@ -14,7 +14,13 @@ const AppRoute = ({ element: Comp, isPrivate, isAuth }) => {
     if (!user) return <Comp />;
     return <Navigate to="/" replace />;
   }
-  return <div>AppRoute</div>;
+  if (isAdmin) {
+    if (user?.maLoaiNguoiDung === "QuanTri") {
+      return <Comp />;
+    }
+    window.alert("Chỉ dành cho Quản trị viên");
+    return <Navigate to="/login" replace />;
+  }
 };
 
 export default AppRoute;

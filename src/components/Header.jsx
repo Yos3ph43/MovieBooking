@@ -2,16 +2,18 @@ import { Button } from "antd";
 import { logoutAction } from "features/Login/redux/action";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const profile = useSelector((state) => state.user.profile);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
       await dispatch(logoutAction());
-      localStorage.setItem("token", null);
+      localStorage.removeItem("token");
+      navigate("/login");
     } catch (error) {
       console.log(error);
     }
@@ -25,12 +27,15 @@ const Header = () => {
         >
           CyberMovie
         </Link>
-        <Link
-          to="/admin/userManage"
-          className="text-red-600 font-semibold text-4xl no-underline"
-        >
-          To Admin
-        </Link>
+        {/* admin validate  */}
+        {profile && profile.maLoaiNguoiDung === "QuanTri" ? (
+          <Link
+            to="/admin"
+            className="text-red-600 font-semibold text-4xl no-underline"
+          >
+            To Admin
+          </Link>
+        ) : null}
         {profile ? (
           <span className="text-indigo-100 text-xl">
             Welcome,

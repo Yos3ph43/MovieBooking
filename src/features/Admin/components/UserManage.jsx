@@ -1,5 +1,6 @@
 import { DeleteFilled, EditFilled } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input, Space, Table } from "antd";
+import { useForm } from "antd/es/form/Form";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,7 +13,7 @@ import {
 
 const UserManage = () => {
   const profile = useSelector((state) => state.admin.allUser);
-
+  const [form] = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSearchUser = (value) => {
@@ -104,6 +105,7 @@ const UserManage = () => {
         {/* user search  */}
         <div>
           <Form
+            form={form}
             name="basic"
             wrapperCol={{ span: 6 }}
             initialValues={{ remember: true }}
@@ -130,6 +132,7 @@ const UserManage = () => {
                   danger
                   onClick={() => {
                     dispatch(fetchAllUserInfo());
+                    form.resetFields();
                   }}
                 >
                   Cancel

@@ -63,17 +63,6 @@ const Login = () => {
           </Form.Item>
 
           <Form.Item
-            name="remember"
-            valuePropName="checked"
-            wrapperCol={{
-              offset: 8,
-              span: 16,
-            }}
-          >
-            <Checkbox>Remember me</Checkbox>
-          </Form.Item>
-
-          <Form.Item
             wrapperCol={{
               offset: 8,
               span: 16,
@@ -83,13 +72,28 @@ const Login = () => {
               Submit
             </Button>
           </Form.Item>
+          <Form.Item
+            wrapperCol={{
+              offset: 8,
+              span: 16,
+            }}
+          >
+            <Button
+              type="link"
+              htmlType="button"
+              danger
+              onClick={() => {
+                navigate("/signup");
+              }}
+            >
+              Don't have account?
+            </Button>
+          </Form.Item>
         </Form>
-        {/* <Button type="primary" onClick={navToSignUp}>
-          Don't have account?
-        </Button> */}
+
         <div>
-          <p>duc3636</p>
-          <p>nguyen1</p>
+          <p>baoadmin</p>
+          <p>123123</p>
         </div>
       </div>
     </div>

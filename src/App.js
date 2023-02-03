@@ -36,8 +36,11 @@ function App() {
         />
         <Route path="/login" element={<AppRoute element={Login} isAuth />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/userinfo" element={<UserInfo />} />
-        <Route path="/admin" element={<Admin />}>
+        <Route
+          path="/userinfo"
+          element={<AppRoute element={UserInfo} isAuth />}
+        />
+        <Route path="/admin" element={<AppRoute element={Admin} isAdmin />}>
           <Route path="/admin/movieManage" element={<MovieManage />} />
           <Route path="/admin/addMovie" element={<AddMovie />} />
           <Route path="/admin/editMovie/:id" element={<EditMovie />} />

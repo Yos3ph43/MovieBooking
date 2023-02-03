@@ -48,9 +48,24 @@ const Booking = () => {
       <div className="container mx-auto">
         <div>
           <h1 className="text-center">{booking.thongTinPhim.tenPhim}</h1>
+          <div className="bg-black h-10 max-w-screen-md ml-52 pt-3">
+            <h3 className="text-white text-center my-auto">SCREEN</h3>
+          </div>
         </div>
         <div className="flex">
-          <div className="flex flex-row flex-wrap w-2/3 bookingSeat">
+          <div className="mx-auto w-20 text-center">
+            <h2>A</h2>
+            <h2 className="mt-7">B</h2>
+            <h2 className="mt-7">C</h2>
+            <h2 className="mt-8">D</h2>
+            <h2 className="mt-8">E</h2>
+            <h2 className="mt-8">F</h2>
+            <h2 className="mt-8">G</h2>
+            <h2 className="mt-8">H</h2>
+            <h2 className="mt-8">I</h2>
+            <h2 className="mt-8">J</h2>
+          </div>
+          <div className="flex flex-row flex-wrap w-3/4 bookingSeat ">
             {booking.danhSachGhe.map((seat) => {
               return (
                 <div key={seat.maGhe}>
@@ -82,7 +97,7 @@ const Booking = () => {
               );
             })}
           </div>
-          <div className="w-1/3">
+          <div className="w-1/4">
             <table className="table-auto border-solid">
               <thead>
                 <tr>
@@ -92,7 +107,7 @@ const Booking = () => {
                   <th>Suất chiếu</th>
                   <th>Tên phim</th>
                   <th>Ghế đã chọn</th>
-                  <th>Tổng tiền</th>
+                  <th>Tổng tiền (VND)</th>
                 </tr>
               </thead>
               <tbody>
@@ -118,7 +133,7 @@ const Booking = () => {
                 </tr>
               </tbody>
             </table>
-            <Button danger onClick={handleConfirmBooking}>
+            <Button className="mt-5" danger onClick={handleConfirmBooking}>
               Đặt vé
             </Button>
             <div className="m-3">
@@ -128,11 +143,11 @@ const Booking = () => {
               </div>
               <div className="m-2">
                 <Button className="bg-yellow-500" disabled></Button>
-                <span>Ghế đang chọn</span>
+                <span className="ml-2 mb-4">Ghế đang chọn</span>
               </div>
               <div className="m-2">
                 <Button className="bg-red-600" disabled></Button>
-                <span>Ghế đã chọn</span>
+                <span className="ml-2">Ghế đã chọn</span>
               </div>
             </div>
           </div>
