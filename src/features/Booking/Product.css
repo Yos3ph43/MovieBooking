@@ -1,11 +1,15 @@
 .product {
-  width: 3rem;
   border-radius: 5px;
-  height: 3rem;
-  margin: 0.5rem;
+  margin: 0.5rem 0.3rem;
   transition: all 0.25s;
   text-align: center;
+  width: 2.7rem;
+  height: 2.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .product:hover {
   color: white;
   background-color: black;
@@ -18,4 +22,12 @@
   background-color: #ffc107;
   color: black;
   border: #ffc107 1px solid;
+}
+
+.result {
+  border: solid 1px;
+}
+.result-row {
+  border-bottom: rgb(0, 0, 0, 15%) solid 1px;
+  padding: 10px 0;
 }

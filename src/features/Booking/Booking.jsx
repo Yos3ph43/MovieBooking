@@ -46,96 +46,108 @@ const Booking = () => {
   return (
     booking && (
       <div className="container mx-auto">
-        <div>
-          <h1 className="text-center">{booking.thongTinPhim.tenPhim}</h1>
-          <div className="bg-black h-10 max-w-screen-md ml-52 pt-3">
-            <h3 className="text-white text-center my-auto">SCREEN</h3>
-          </div>
-        </div>
         <div className="flex">
-          <div className="mx-auto w-20 text-center">
-            <h2>A</h2>
-            <h2 className="mt-7">B</h2>
-            <h2 className="mt-7">C</h2>
-            <h2 className="mt-8">D</h2>
-            <h2 className="mt-8">E</h2>
-            <h2 className="mt-8">F</h2>
-            <h2 className="mt-8">G</h2>
-            <h2 className="mt-8">H</h2>
-            <h2 className="mt-8">I</h2>
-            <h2 className="mt-8">J</h2>
-          </div>
-          <div className="flex flex-row flex-wrap w-3/4 bookingSeat ">
-            {booking.danhSachGhe.map((seat) => {
-              return (
-                <div key={seat.maGhe}>
-                  <Button
-                    onClick={() => {
-                      const index = newList.findIndex(
-                        (item) => item.maGhe === seat.maGhe
-                      );
+          <div className=" w-2/3 ">
+            <div>
+              <h1 className="text-center">{booking.thongTinPhim.tenPhim}</h1>
+              <div className="bg-black h-10 max-w-screen-md mx-auto rounded pt-3">
+                <h3 className="text-white text-center my-auto">SCREEN</h3>
+              </div>
+            </div>
+            <div className="flex flex-wrap bookingSeat justify-start">
+              {booking.danhSachGhe.map((seat) => {
+                return (
+                  <div className="seats p-1" key={seat.maGhe}>
+                    <Button
+                      onClick={() => {
+                        const index = newList.findIndex(
+                          (item) => item.maGhe === seat.maGhe
+                        );
 
-                      if (index !== -1) {
-                        newList.splice(index, 1);
-                      } else {
-                        newList.push(seat);
-                      }
-                      console.log(index);
-                      bookingSeat(newList);
-                    }}
-                    className={clsx("product", {
-                      booked: seat.daDat,
-                      booking: newList.find(
-                        (index) => index.maGhe === seat.maGhe
-                      ),
-                    })}
-                    disabled={seat.daDat}
-                  >
-                    {seat.tenGhe}
-                  </Button>
-                </div>
-              );
-            })}
+                        if (index !== -1) {
+                          newList.splice(index, 1);
+                        } else {
+                          newList.push(seat);
+                        }
+                        console.log(index);
+                        bookingSeat(newList);
+                      }}
+                      className={clsx("product", {
+                        booked: seat.daDat,
+                        booking: newList.find(
+                          (index) => index.maGhe === seat.maGhe
+                        ),
+                      })}
+                      disabled={seat.daDat}
+                    >
+                      {seat.tenGhe}
+                    </Button>
+                    <div></div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-          <div className="w-1/4">
-            <table className="table-auto border-solid">
-              <thead>
-                <tr>
-                  <th>Cụm rạp</th>
-                  <th>Địa chỉ</th>
-                  <th>Rạp</th>
-                  <th>Suất chiếu</th>
-                  <th>Tên phim</th>
-                  <th>Ghế đã chọn</th>
-                  <th>Tổng tiền (VND)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{booking.thongTinPhim.tenCumRap}</td>
-                  <td>{booking.thongTinPhim.diaChi}</td>
-                  <td>{booking.thongTinPhim.tenRap}</td>
-                  <td>
+          <div className="w-1/3 p-5 mt-24">
+            <div className="p-5 result rounded-lg">
+              <div>
+                <div className="flex justify-between items-center result-row">
+                  <b>Cụm rạp:</b>
+                  <p>{booking.thongTinPhim.tenCumRap}</p>
+                </div>
+
+                <div className="flex justify-between items-center result-row">
+                  <b>Địa chỉ:</b>
+                  <p>{booking.thongTinPhim.diaChi}</p>
+                </div>
+
+                <div className="flex justify-between items-center result-row">
+                  <b>Rạp:</b>
+                  <p>{booking.thongTinPhim.tenRap}</p>
+                </div>
+
+                <div className="flex justify-between items-center result-row">
+                  <b>Suất chiếu:</b>
+                  <p>
                     {booking.thongTinPhim.ngayChieu}-
                     {booking.thongTinPhim.gioChieu}
-                  </td>
-                  <td>{booking.thongTinPhim.tenPhim}</td>
-                  <td>
+                  </p>
+                </div>
+
+                <div className="flex justify-between items-center result-row">
+                  <b>Tên phim:</b>
+                  <p>{booking.thongTinPhim.tenPhim}</p>
+                </div>
+
+                <div className="flex justify-between items-center result-row">
+                  <b>Ghế đã chọn:</b>
+                  <p>
                     {list.map((item) => {
                       return <span key={item.maGhe}>{item.tenGhe},</span>;
                     })}
-                  </td>
-                  <td>
+                  </p>
+                </div>
+                <div className="flex justify-between items-center ">
+                  <b>Tổng tiền (VND)</b>
+                  <p>
                     {list.reduce((total, item) => {
                       return (total += item.giaVe);
                     }, 0)}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <Button className="mt-5" danger onClick={handleConfirmBooking}>
-              Đặt vé
-            </Button>
+                  </p>
+                </div>
+              </div>
+              <div className="text-right">
+                <Button
+                  className="mt-5"
+                  danger
+                  onClick={handleConfirmBooking}
+                  size="large"
+                >
+                  Đặt vé
+                </Button>
+              </div>
+            </div>
+
             <div className="m-3">
               <div className="m-2">
                 <Button className="bg-white" disabled></Button>
