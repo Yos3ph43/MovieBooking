@@ -19,7 +19,7 @@ const Login = () => {
   };
 
   return (
-    <div className="container ">
+    <div className="container mx-auto">
       <div className="flex justify-center mt-10">
         <Form
           name="basic"
@@ -35,6 +35,8 @@ const Login = () => {
           onFinish={handleLogin}
           // onFinishFailed={}
           autoComplete="off"
+          style={{ border: "solid 1px" }}
+          className="p-10 rounded-lg border-neutral-300"
         >
           <Form.Item
             label="Username"
@@ -62,22 +64,12 @@ const Login = () => {
             <Input.Password />
           </Form.Item>
 
-          <Form.Item
-            wrapperCol={{
-              offset: 8,
-              span: 16,
-            }}
-          >
+          <div className="flex justify-center">
             <Button type="primary" htmlType="submit">
-              Submit
+              Login
             </Button>
-          </Form.Item>
-          <Form.Item
-            wrapperCol={{
-              offset: 8,
-              span: 16,
-            }}
-          >
+          </div>
+          <div className="flex justify-center">
             <Button
               type="link"
               htmlType="button"
@@ -88,13 +80,13 @@ const Login = () => {
             >
               Don't have account?
             </Button>
-          </Form.Item>
+          </div>
         </Form>
-
-        <div>
-          <p>baoadmin</p>
-          <p>123123</p>
-        </div>
+      </div>
+      <div className="text-center text-neutral-400">
+        <span>baoadmin</span>
+        <br />
+        <span>123123</span>
       </div>
     </div>
   );

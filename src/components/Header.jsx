@@ -46,7 +46,12 @@ const Header = () => {
               {profile?.hoTen}
             </Link>{" "}
             <Button
-              onClick={handleLogout}
+              onClick={() => {
+                if (!window.confirm("Đăng xuất và trở về trang đăng nhập?"))
+                  return;
+                navigate("/login");
+                handleLogout();
+              }}
               className="ml-10"
               danger
               type="primary"

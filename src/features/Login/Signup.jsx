@@ -17,21 +17,23 @@ const Signup = () => {
     }
   };
   return (
-    <div className="container ">
+    <div className="container mx-auto">
       <div className="flex justify-center mt-10">
         <Form
           name="basic"
           labelCol={{
-            span: 8,
+            span: 5,
           }}
-          wrapperCol={{
-            span: 16,
-          }}
+          // wrapperCol={{
+          //   span: 16,
+          // }}
           initialValues={{
             remember: true,
           }}
           onFinish={handleAddNew}
           autoComplete="off"
+          style={{ border: "solid 1px", minWidth: "40%" }}
+          className="p-10 rounded-lg border-neutral-300"
         >
           <Form.Item
             label="Username"
@@ -109,21 +111,18 @@ const Signup = () => {
             <Input placeholder="Nguyễn Văn A" />
           </Form.Item>
 
-          <Form.Item
+          <div
+            className="flex justify-center mt-10 "
             wrapperCol={{
               offset: 8,
               span: 16,
             }}
           >
-            <Button type="primary" htmlType="submit">
-              Submit
+            <Button type="primary" htmlType="submit" size="large">
+              Register
             </Button>
-          </Form.Item>
+          </div>
         </Form>
-        <div>
-          <p>duc3636</p>
-          <p>nguyen1</p>
-        </div>
       </div>
     </div>
   );
