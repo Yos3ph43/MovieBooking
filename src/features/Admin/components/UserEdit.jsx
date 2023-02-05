@@ -28,11 +28,15 @@ const UserEdit = () => {
   }, [params]);
   const handleSubmit = async (value) => {
     setLoading(true);
-    await dispatch(editUserAction(value));
-    setTimeout(() => {
-      navigate("/admin/userManage");
+    try {
+      await dispatch(editUserAction(value));
+      setTimeout(() => {
+        navigate("/admin/userManage");
+        setLoading(false);
+      }, 1000);
+    } catch (error) {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   return (
