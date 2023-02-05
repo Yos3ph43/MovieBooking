@@ -1,3 +1,4 @@
+import { LogoutOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import { logoutAction } from "features/Login/redux/action";
 import React from "react";
@@ -52,11 +53,12 @@ const Header = () => {
                 navigate("/login");
                 handleLogout();
               }}
-              className="ml-10"
+              className="ml-1 "
               danger
+              size="small"
               type="primary"
             >
-              LOGOUT
+              <LogoutOutlined />
             </Button>
           </span>
         ) : (

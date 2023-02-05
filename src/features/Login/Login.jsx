@@ -2,7 +2,7 @@ import { Button, Checkbox, Form, Input } from "antd";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loginAction } from "./redux/action";
+import { fetchProfileAction, loginAction } from "./redux/action";
 
 const Login = () => {
   const dispatch = useDispatch();

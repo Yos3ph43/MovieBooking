@@ -46,6 +46,7 @@ export const fetchProfileAction = async (next) => {
       type: actions.SET_PROFILE,
       payload: res.data.content,
     });
+    console.log(res.data.content);
   } catch (error) {
     console.log(error);
   }

@@ -38,7 +38,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route
           path="/userinfo"
-          element={<AppRoute element={UserInfo} isAuth />}
+          element={<AppRoute element={UserInfo} isPrivate />}
         />
         <Route path="/admin" element={<AppRoute element={Admin} isAdmin />}>
           <Route path="/admin/movieManage" element={<MovieManage />} />

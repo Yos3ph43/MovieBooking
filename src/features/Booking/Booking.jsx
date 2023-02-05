@@ -20,7 +20,7 @@ const Booking = () => {
   const booking = useSelector((state) => state.booking.booking);
   const userLogin = useSelector((state) => state.user.profile);
 
-  const handleConfirmBooking = () => {
+  const handleConfirmBooking = async () => {
     if (!userLogin)
       return navigate("/login"), alert("Vui lòng đăng nhập để đặt vé");
 
@@ -37,7 +37,7 @@ const Booking = () => {
     };
 
     try {
-      dispatch(bookingAction(confirmBookingData));
+      await dispatch(bookingAction(confirmBookingData));
       alert("Đặt vé thành công");
     } catch (error) {
       console.log(error);
