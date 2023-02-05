@@ -1,6 +1,6 @@
-BC37 ReactJS capstone project members:
+## BC37 ReactJS capstone project members:
 
-1/Dang Nguyen Minh Luan:
+### 1/Dang Nguyen Minh Luan:
     -Booking:
         +Header.jsx : header
         +Home.jsx (Home Carousel.jsx, CinemaSchedule.jsx, MovieList.jsx) : trang chủ
@@ -12,7 +12,7 @@ BC37 ReactJS capstone project members:
         +EditMovie.jsx   : chỉnh sửa phim
         +SetSchedule.jsx : đặt lịch chiếu cho phim
 
-2/Luong Sy Bao:
+### 2/Luong Sy Bao:
     -Login:
         +Login.jsx       : trang đăng nhập
         +Signup.jsx      : trang đăng ký
