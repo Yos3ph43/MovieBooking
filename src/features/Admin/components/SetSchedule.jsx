@@ -10,10 +10,10 @@ import {
 } from "../redux/action";
 import { fetchCinemaCluster } from "../utils/fetchCinema";
 import { useFormik } from "formik";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 const SetSchedule = (props) => {
   const params = useParams();
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCinemas);
@@ -37,10 +37,9 @@ const SetSchedule = (props) => {
       maRap: "",
       giaVe: 0,
     },
-    onSubmit: (values) => {
-      console.log("value:", values);
-
-      dispatch(setMovieScheduleAction(values));
+    onSubmit: async (values) => {
+      await dispatch(setMovieScheduleAction(values));
+      navigate("/admin/movieManage");
     },
   });
   const handleChangeDatePicker = (value) => {
