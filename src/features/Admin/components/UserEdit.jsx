@@ -38,21 +38,19 @@ const UserEdit = () => {
   return (
     profile && (
       <div className="container ">
-        <div className="flex justify-center mt-10">
+        <div className="mx-auto mt-10">
           <Spin spinning={loading}>
             <Form
               name="basic"
               labelCol={{
-                span: 8,
-              }}
-              wrapperCol={{
-                span: 16,
+                span: 5,
               }}
               initialValues={{
                 remember: true,
               }}
               onFinish={handleSubmit}
               autoComplete="off"
+              className="w-1/2 mx-auto"
             >
               <Form.Item
                 initialValue={profile.taiKhoan}
@@ -112,11 +110,10 @@ const UserEdit = () => {
                   },
                 ]}
               >
-                <Input.Number placeholder="Phone number" />
+                <Input placeholder="Phone number" />
               </Form.Item>
 
               <Form.Item
-                labelCol={{ span: 9 }}
                 initialValue={profile.maNhom}
                 label="Group number"
                 name="maNhom"
