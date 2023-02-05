@@ -40,7 +40,7 @@ function App() {
           path="/userinfo"
           element={<AppRoute element={UserInfo} isPrivate />}
         />
-        <Route path="/admin" element={<AppRoute element={Admin} isAdmin />}>
+        <Route path="/admin" element={<Admin />}>
           <Route path="/admin/movieManage" element={<MovieManage />} />
           <Route path="/admin/addMovie" element={<AddMovie />} />
           <Route path="/admin/editMovie/:id" element={<EditMovie />} />

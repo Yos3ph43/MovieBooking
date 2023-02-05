@@ -25,22 +25,20 @@ const UserAdd = () => {
   };
   return (
     <div className="container ">
-      <div className="flex justify-center mt-10">
+      <div className="mx-auto mt-10">
         <Spin spinning={loading}>
           <Form
             form={form}
             name="basic"
             labelCol={{
-              span: 10,
+              span: 5,
             }}
             wrapperCol={{
               span: 16,
             }}
-            // initialValues={{
-            //   remember: true,
-            // }}
             onFinish={handleAddNew}
             autoComplete="off"
+            className="w-1/2 mx-auto"
           >
             <Form.Item
               label="Username"
@@ -96,7 +94,7 @@ const UserAdd = () => {
                 },
               ]}
             >
-              <Input.Number placeholder="Phone number" />
+              <Input placeholder="Phone number" />
             </Form.Item>
 
             <Form.Item
