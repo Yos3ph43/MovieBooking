@@ -13,15 +13,18 @@ const UserAdd = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleAddNew = (value) => {
+  const handleAddNew = async (value) => {
     setLoading(true);
-    dispatch(addUserAction(value));
-    setTimeout(() => {
-      navigate("/admin/userManage");
-      form.resetFields();
-      dispatch(fetchAllUserInfo());
+    try {
+      await dispatch(addUserAction(value));
+      setTimeout(() => {
+        dispatch(fetchAllUserInfo());
+        form.resetFields();
+        navigate("/admin/userManage");
+      }, 1000);
+    } catch (error) {
       setLoading(false);
-    }, 1000);
+    }
   };
   return (
     <div className="container ">

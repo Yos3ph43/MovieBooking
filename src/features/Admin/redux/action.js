@@ -120,7 +120,8 @@ export const addUserAction = (formData) => async () => {
     alert("Thêm thành công");
     console.log(res.data.content);
   } catch (error) {
-    throw alert(error.response.data.content);
+    alert(error.response.data.content);
+    throw error;
   }
 };
 
