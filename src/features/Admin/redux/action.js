@@ -35,6 +35,7 @@ export const fetchCinemas = async (next) => {
 };
 
 export const deleteSeletedMovie = (id) => async (next) => {
+  if (!window.confirm("Xóa phim?")) return;
   try {
     const res = await requestor({
       method: "DELETE",
@@ -43,6 +44,7 @@ export const deleteSeletedMovie = (id) => async (next) => {
         MaPhim: id,
       },
     });
+    alert("Đã xóa");
     console.log(res.data.content);
   } catch (error) {
     console.log(error);
@@ -75,6 +77,7 @@ export const updateMovieAction = (formData) => async () => {
   } catch (error) {
     console.log(error);
     alert(error.response?.data.content);
+    throw error;
   }
 };
 

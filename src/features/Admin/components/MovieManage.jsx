@@ -4,17 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Space, Table } from "antd";
 import { DeleteFilled, ScheduleFilled, EditFilled } from "@ant-design/icons";
 import SetSchedule from "./SetSchedule";
-import MovieEdit from "./MovieEdit";
+// import MovieEdit from "./MovieEdit";
 import { deleteSeletedMovie, fetchMovies } from "../redux/action";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const MovieManage = () => {
   const dispatch = useDispatch();
-  const [shouldUpdate, setShouldUpdate] = useState(0);
   useEffect(() => {
     dispatch(fetchMovies);
-  }, [shouldUpdate]);
+  }, []);
   const movies = useSelector((state) => state.admin.movies);
 
   const [movieId, setMovieId] = useState("");
@@ -95,10 +94,9 @@ const MovieManage = () => {
 
             <Button className="bg-red-800 text-white border-white hover:border-red-600 hover:text-red-600 hover:bg-neutral-800">
               <DeleteFilled
-                onClick={() => {
-                  dispatch(deleteSeletedMovie(item.maPhim));
+                onClick={async () => {
+                  await dispatch(deleteSeletedMovie(item.maPhim));
                   dispatch(fetchMovies);
-                  setShouldUpdate(shouldUpdate - 1);
                 }}
               />
             </Button>
@@ -122,7 +120,7 @@ const MovieManage = () => {
     <div>
       <div className="my-5"></div>
       <Table columns={columns} dataSource={data} />
-      <Modal
+      {/* <Modal
         open={isModalOpen}
         onCancel={handleCancel}
         width="80%"
@@ -133,7 +131,7 @@ const MovieManage = () => {
         ]}
       >
         <MovieEdit movieId={movieId} />
-      </Modal>
+      </Modal> */}
 
       <Modal
         open={isModalOpen1}

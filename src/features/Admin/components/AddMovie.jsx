@@ -6,6 +6,7 @@ import moment from "moment";
 import { useFormik } from "formik";
 import TextArea from "antd/es/input/TextArea";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const formItemLayout = {
   labelCol: {
@@ -15,8 +16,8 @@ const formItemLayout = {
     span: 14,
   },
 };
-
 const AddMovie = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [movieImg, setMovieImg] = useState("");
@@ -33,7 +34,7 @@ const AddMovie = () => {
       maNhom: "GP10",
       hinhAnh: {},
     },
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       // console.log("value:", values);
       let formData = new FormData();
       for (let key in values) {
@@ -44,7 +45,8 @@ const AddMovie = () => {
         }
         // console.log(`${key}:`, formData.get(key));
       }
-      dispatch(createMovieAction(formData));
+      await dispatch(createMovieAction(formData));
+      navigate("/admin/movieManage");
     },
   });
   const handleChangeFile = (e) => {

@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchDetail } from "../redux/action";
 import moment from "moment";
 import { updateMovieAction } from "../redux/action";
+import { useNavigate } from "react-router-dom";
 
 const formItemLayout = {
   labelCol: {
@@ -34,6 +35,7 @@ const getFile = (e) => {
 };
 const MovieEdit = (props) => {
   const [form] = Form.useForm();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchDetail(props.movieId));
@@ -42,10 +44,9 @@ const MovieEdit = (props) => {
   if (!props.movieId) movieDetail = null;
 
   //submit
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
-    dispatch(updateMovieAction(values));
-    console.log(moment(movieDetail.ngayKhoiChieu));
+  const onFinish = async (values) => {
+    await dispatch(updateMovieAction(values));
+    navigate("/admin/movieManage");
   };
 
   return (

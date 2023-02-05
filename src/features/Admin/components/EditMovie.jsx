@@ -6,7 +6,7 @@ import moment from "moment";
 import { useFormik } from "formik";
 import TextArea from "antd/es/input/TextArea";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import dayjs from "dayjs";
 
 const formItemLayout = {
@@ -20,10 +20,12 @@ const formItemLayout = {
 
 const EditMovie = () => {
   const params = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchDetail(params.id));
   }, [params.id]);
+
   let item = useSelector((state) => state.admin.movieDetail);
   const [movieImg, setMovieImg] = useState("");
   const formik = useFormik({
@@ -42,8 +44,8 @@ const EditMovie = () => {
       hinhAnh: null,
     },
 
-    onSubmit: (values) => {
-      console.log("value:", values);
+    onSubmit: async (values) => {
+      // console.log("value:", values);
       let formData = new FormData();
       for (let key in values) {
         if (key !== "hinhAnh") {
@@ -52,12 +54,10 @@ const EditMovie = () => {
           if (values.hinhAnh !== null)
             formData.append("hinhAnh", values.hinhAnh);
         }
-        console.log(`${key}:`, formData.get(key));
+        // console.log(`${key}:`, formData.get(key));
       }
-      dispatch(updateMovieAction(formData));
-      console.log(dayjs(formik.values.ngayKhoiChieu));
-      let date = `${formik.values.ngayKhoiChieu}`;
-      console.log(date.slice(0, 10));
+      await dispatch(updateMovieAction(formData));
+      navigate("/admin/movieManage");
     },
   });
   const date = `${formik.values.ngayKhoiChieu}`;
@@ -89,8 +89,6 @@ const EditMovie = () => {
 
     formik.setFieldValue("ngayKhoiChieu", value.format("DD/MM/YYYY"));
   };
-
-  console.log(formik.values);
 
   const handleChangeSwitches = (name) => (value) => {
     formik.setFieldValue(name, value);
