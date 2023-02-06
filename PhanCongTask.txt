@@ -22,3 +22,6 @@ Luong Sy Bao:
         +UserAdd.jsx     : thêm người dùng
         +UserEdit.jsx    : chỉnh sửa thông tin người dùng
         
+LINK GITHUB: https://github.com/Yos3ph43/MovieBooking.git
+LINK DELOY: https://movie-booking-alpha.vercel.app/
+LINK DEMO: https://youtu.be/MCW_qO5AgbQ
